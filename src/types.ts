@@ -118,6 +118,8 @@ export interface ShopService {
   deliverables: string[];
   idealFor: string;
   fgliWaiverAvailable: boolean;
+  payhipUrl?: string;
+  payhipProduct?: string;
 }
 
 export interface BlogCallout {

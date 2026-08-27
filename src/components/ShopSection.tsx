@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SHOP_SERVICES_DATA } from '../data/portfolioData';
 import { ShopService } from '../types';
 import { TiltCard } from './TiltCard';
@@ -20,7 +20,8 @@ import {
   HeartHandshake,
   X,
   Send,
-  Sparkles
+  Sparkles,
+  Download
 } from 'lucide-react';
 
 export const ShopSection: React.FC = () => {
@@ -36,9 +37,23 @@ export const ShopSection: React.FC = () => {
   const [upcomingDeadline, setUpcomingDeadline] = useState('');
   const [notesOrEssayLink, setNotesOrEssayLink] = useState('');
 
-  const handleOpenBooking = (service: ShopService) => {
+  useEffect(() => {
+    // Re-initialize Payhip if script loaded asynchronously
+    if (typeof window !== 'undefined') {
+      const win = window as any;
+      if (win.Payhip && typeof win.Payhip.init === 'function') {
+        try {
+          win.Payhip.init();
+        } catch {
+          // graceful fallback
+        }
+      }
+    }
+  }, []);
+
+  const handleOpenBooking = (service: ShopService, defaultWaiver = false) => {
     setSelectedService(service);
-    setIsFgliWaiverRequested(false);
+    setIsFgliWaiverRequested(defaultWaiver);
     setFormSubmitted(false);
     setBookingModalOpen(true);
   };
@@ -184,18 +199,43 @@ export const ShopSection: React.FC = () => {
                 </div>
 
                 {/* Action Button */}
-                <div className="pt-4 border-t border-stone-100 dark:border-stone-800 flex flex-col space-y-3">
+                <div className="pt-4 border-t border-stone-100 dark:border-stone-800 flex flex-col space-y-2.5">
                   <span className="text-[11px] text-stone-500 dark:text-stone-400 font-medium">
                     <strong className="text-stone-700 dark:text-stone-300">Ideal for:</strong> {service.idealFor}
                   </span>
 
-                  <button
-                    onClick={() => handleOpenBooking(service)}
-                    className="w-full py-2.5 sm:py-3 text-xs font-medium rounded-lg shadow-2xs flex items-center justify-center gap-1.5 transition-all cursor-pointer bg-[#241D2B] dark:bg-[#3E2B4E] hover:bg-[#382B42] dark:hover:bg-[#4E3862] text-white hover:scale-101"
-                  >
-                    <span>Get Started ({service.price})</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-stone-300 dark:text-[#FAF5ED]" />
-                  </button>
+                  {service.payhipUrl ? (
+                    <div className="space-y-2 pt-1">
+                      <a
+                        href={service.payhipUrl}
+                        className="payhip-buy-button w-full py-2.5 sm:py-3 text-xs font-medium rounded-lg shadow-2xs flex items-center justify-center gap-1.5 transition-all cursor-pointer bg-[#241D2B] dark:bg-[#3E2B4E] hover:bg-[#382B42] dark:hover:bg-[#4E3862] text-white hover:scale-101 no-underline"
+                        data-theme="none"
+                        data-product={service.payhipProduct || "0NDan"}
+                      >
+                        <Download className="w-3.5 h-3.5 text-stone-300 dark:text-[#FAF5ED]" />
+                        <span>Instant Access ({service.price})</span>
+                        <ArrowRight className="w-3.5 h-3.5 text-stone-300 dark:text-[#FAF5ED]" />
+                      </a>
+
+                      {service.fgliWaiverAvailable && (
+                        <button
+                          type="button"
+                          onClick={() => handleOpenBooking(service, true)}
+                          className="w-full text-center text-[11px] text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 transition-colors underline cursor-pointer py-0.5"
+                        >
+                          Need financial aid? Request free FGLI access
+                        </button>
+                      )}
+                    </div>
+                  ) : (
+                    <button
+                      onClick={() => handleOpenBooking(service)}
+                      className="w-full py-2.5 sm:py-3 text-xs font-medium rounded-lg shadow-2xs flex items-center justify-center gap-1.5 transition-all cursor-pointer bg-[#241D2B] dark:bg-[#3E2B4E] hover:bg-[#382B42] dark:hover:bg-[#4E3862] text-white hover:scale-101"
+                    >
+                      <span>Get Started ({service.price})</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-stone-300 dark:text-[#FAF5ED]" />
+                    </button>
+                  )}
                 </div>
 
               </TiltCard>

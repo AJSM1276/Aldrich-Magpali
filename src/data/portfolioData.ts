@@ -547,7 +547,9 @@ export const SHOP_SERVICES_DATA: ShopService[] = [
       "Personal Statement Ideation & Brainstorming Action Blueprint"
     ],
     idealFor: "QuestBridge and Common App applicants seeking an authentic, successful full-match essay model and strategy breakdown.",
-    fgliWaiverAvailable: true
+    fgliWaiverAvailable: true,
+    payhipUrl: "https://payhip.com/b/0NDan",
+    payhipProduct: "0NDan"
   }
 ];
 
