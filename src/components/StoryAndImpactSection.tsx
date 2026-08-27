@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { 
-  COLLEGE_ACCESS_MILESTONES, 
   MENTEE_STORIES 
 } from '../data/portfolioData';
 import { TiltCard } from './TiltCard';
+import { MatchReactionVideo } from './MatchReactionVideo';
 import { motion } from 'motion/react';
 import { 
   staggerContainer, 
@@ -96,79 +96,11 @@ export const StoryAndImpactSection: React.FC<StoryAndImpactSectionProps> = ({
             initial="hidden"
             animate="visible"
             variants={staggerContainer(0.1, 0.05)}
-            className="space-y-8"
+            className="space-y-6"
           >
-            
-            {/* Match Day Hero Card in Refined Deep Charcoal Plum */}
-            <motion.div variants={fadeInScale}>
-              <TiltCard 
-                maxTilt={2}
-                scale={1.005}
-                glareOpacity={0.05}
-                className="p-6 sm:p-8 rounded-2xl bg-[#221B2A] text-white shadow-md relative overflow-hidden border border-stone-800"
-              >
-                <div className="relative z-10 space-y-4 max-w-3xl">
-                  <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#FAF5ED] text-[#4A3B22] text-xs font-semibold rounded-full border border-[#E5DAC6] shadow-2xs">
-                    <Sparkles className="w-3.5 h-3.5 text-[#876834]" />
-                    <span>December 1, 2025 • Match Day</span>
-                  </div>
-
-                  <h3 className="font-serif text-2xl sm:text-3xl font-light text-white leading-snug">
-                    "The screen updated, and my family screamed in our living room."
-                  </h3>
-
-                  <p className="text-stone-300 text-sm leading-relaxed">
-                    At 4:00 PM on December 1st, after months of deciphering CSS profile tax schedules alone and drafting essays deep into the night, I refreshed the QuestBridge portal. I matched to <strong className="text-[#E2D2B5] font-medium">Williams College Class of 2030 with a 100% comprehensive full four-year scholarship ($0 loans, covering all tuition, room, board, and books)</strong>.
-                  </p>
-
-                  <div className="pt-2 flex flex-wrap items-center gap-3 text-xs">
-                    <span className="px-2.5 py-1 bg-white/10 rounded-md font-medium text-stone-200 border border-white/10">
-                      Match Scholar #1 of 14 to Williams '30
-                    </span>
-                    <span className="px-2.5 py-1 bg-white/10 rounded-md font-medium text-stone-200 border border-white/10">
-                      100% Demonstrated Need Funded
-                    </span>
-                    <span className="px-2.5 py-1 bg-white/10 rounded-md font-medium text-stone-200 border border-white/10">
-                      $0 Required Family Contribution
-                    </span>
-                  </div>
-                </div>
-              </TiltCard>
-            </motion.div>
-
-            {/* Milestones Grid with Staggered Cards */}
-            <motion.div variants={staggerContainer(0.08, 0.1)} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {COLLEGE_ACCESS_MILESTONES.map((item) => (
-                <motion.div key={item.id} variants={fadeInUp}>
-                  <TiltCard
-                    maxTilt={3}
-                    scale={1.01}
-                    className="p-5 bg-white rounded-xl border border-stone-200/80 shadow-2xs space-y-3 flex flex-col justify-between hover:border-stone-300 transition-colors h-full"
-                  >
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[11px] font-semibold tracking-wide text-[#3A274A] bg-[#F2EDF7] px-2.5 py-0.5 rounded border border-[#DDD0E8]">
-                          {item.badge}
-                        </span>
-                        <span className="text-xs text-stone-400 font-medium">{item.year}</span>
-                      </div>
-
-                      <h4 className="font-serif text-base font-medium text-stone-900 leading-snug">
-                        {item.title}
-                      </h4>
-
-                      <p className="text-xs text-stone-600 leading-relaxed">
-                        {item.narrative}
-                      </p>
-                    </div>
-
-                    <div className="pt-2 border-t border-stone-100 flex items-center gap-1.5 text-xs text-[#3A274A] font-medium">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#3A274A] shrink-0" />
-                      <span className="truncate">{item.impactNote}</span>
-                    </div>
-                  </TiltCard>
-                </motion.div>
-              ))}
+            {/* Parents' Match Day Live Reaction Embedded Video */}
+            <motion.div variants={fadeInUp}>
+              <MatchReactionVideo />
             </motion.div>
 
             {/* Quick Link to Playbook */}

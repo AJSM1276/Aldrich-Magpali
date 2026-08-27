@@ -31,9 +31,8 @@ export const PERSONAL_INFO = {
   socials: [
     { name: "Blog & Newsletter", url: "https://aldrichmagpali-newsletter.beehiiv.com/", username: "aldrichmagpali-newsletter", icon: "Mail" },
     { name: "LinkedIn", url: "https://www.linkedin.com/in/aldrich-magpali/", username: "aldrich-magpali", icon: "Linkedin" },
-    { name: "TikTok", url: "https://tiktok.com/@aldrichmagpali", username: "@aldrichmagpali", icon: "TikTok" },
-    { name: "Instagram", url: "https://instagram.com/aldrichmagpali", username: "@aldrichmagpali", icon: "Instagram" },
-    { name: "Email", url: "mailto:aldrichmagpali1276@gmail.com", username: "aldrichmagpali1276@gmail.com", icon: "Mail" }
+    { name: "TikTok", url: "https://www.tiktok.com/@ajsm3", username: "@ajsm3", icon: "TikTok" },
+    { name: "Instagram", url: "https://www.instagram.com/ajsm1276/", username: "@ajsm1276", icon: "Instagram" }
   ],
   tagline: "Opening selective college doors and bridging the divide between ambition and opportunity.",
   bio: "Incoming first-year at Williams College ('30) and QuestBridge Match Scholar from Maryland. After navigating the high-stakes college admissions maze as a low-income first-generation student, I have dedicated my time to mentoring 20+ FGLI applicants, creating Tutorly, and researching cognitive learning tools.",
@@ -510,6 +509,8 @@ export const SHOP_SERVICES_DATA: ShopService[] = [
     price: "$35",
     turnaroundTime: "48–72 Hours",
     popular: true,
+    imageUrl: "/product_essay_review.jpg",
+    imageAlt: "Personal Statement Review & Line Audit editorial document and margin annotations preview",
     description: "A comprehensive, line-by-line editorial and macro structural review of your 650-word Common App essay or 800-word QuestBridge biographical statement, including 1 free follow-up review.",
     includes: [
       "Extensive Google Docs margin comments with line-by-line syntax & word choice optimization",
@@ -532,6 +533,8 @@ export const SHOP_SERVICES_DATA: ShopService[] = [
     price: "$10",
     turnaroundTime: "Instant Digital Access",
     popular: false,
+    imageUrl: "/product_exemplar_breakdown.jpg",
+    imageAlt: "QuestBridge Match winning personal statement exemplar and strategy breakdown digital publication preview",
     description: "The authentic, unedited 800-word QuestBridge biographical essay that matched to Williams College Class of 2030 (full 4-year $350K+ match scholarship), with line-by-line commentary and prompt strategy.",
     includes: [
       "Full, unedited text of Aldrich's winning 800-word QuestBridge biographical statement",

@@ -111,6 +111,8 @@ export interface ShopService {
   price: string;
   turnaroundTime: string;
   popular?: boolean;
+  imageUrl?: string;
+  imageAlt?: string;
   description: string;
   includes: string[];
   deliverables: string[];

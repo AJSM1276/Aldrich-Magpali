@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { TiltCard } from './TiltCard';
 import confetti from 'canvas-confetti';
@@ -7,8 +7,7 @@ import {
   staggerContainer, 
   fadeInUp, 
   fadeInLeft, 
-  fadeInRight, 
-  fadeInScale 
+  fadeInRight 
 } from '../utils/motionVariants';
 import { 
   ArrowRight, 
@@ -16,10 +15,7 @@ import {
   MapPin, 
   Sparkles, 
   Award,
-  Camera,
-  Upload,
-  Check,
-  X
+  Check
 } from 'lucide-react';
 
 interface HeroSectionProps {
@@ -31,12 +27,6 @@ interface HeroSectionProps {
 export const HeroSection: React.FC<HeroSectionProps> = ({
   onOpenQuestBridgeGuide,
 }) => {
-  const [currentImage, setCurrentImage] = useState<string>(
-    PERSONAL_INFO.defaultAvatarUrl || "/aldrich_portrait.jpg"
-  );
-  const [showImageModal, setShowImageModal] = useState(false);
-  const [customUrl, setCustomUrl] = useState('');
-
   const triggerMatchConfetti = () => {
     confetti({
       particleCount: 60,
@@ -46,129 +36,98 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
     });
   };
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        if (event.target?.result) {
-          setCurrentImage(event.target.result as string);
-          setShowImageModal(false);
-        }
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleApplyUrl = () => {
-    if (customUrl.trim()) {
-      setCurrentImage(customUrl.trim());
-      setShowImageModal(false);
-      setCustomUrl('');
-    }
-  };
-
   return (
     <motion.section 
-      id="hero-section" 
-      initial={{ opacity: 0, y: 15 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="relative pt-28 pb-14 md:pt-36 md:pb-20 overflow-hidden bg-[#FAF8F5]"
+      id="hero"
+      initial="hidden"
+      animate="visible"
+      variants={staggerContainer(0.1, 0.05)}
+      className="relative pt-24 pb-16 md:pt-28 md:pb-20 overflow-hidden"
     >
-      {/* Subtle ambient light wash */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-purple-100/30 rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute bottom-10 left-10 w-72 h-72 bg-amber-50/40 rounded-full blur-2xl pointer-events-none -z-10" />
-
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
-          {/* Left Column: Clean narrative with staggered child animations */}
+          {/* Main Narrative Column */}
           <motion.div 
-            variants={staggerContainer(0.1, 0.05)}
-            initial="hidden"
-            animate="visible"
-            className="md:col-span-7 space-y-5 text-left"
+            variants={fadeInLeft}
+            className="lg:col-span-7 space-y-5"
           >
             
             {/* Top Badges */}
-            <motion.div variants={fadeInUp} className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#F2EDF7] text-[#3A274A] text-[11px] font-semibold tracking-wide rounded-full border border-[#DDD0E8]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#3A274A]"></span>
-                Williams College '30
-              </span>
-
-              <button
+            <div className="flex flex-wrap items-center gap-2">
+              <button 
+                id="hero-badge-qb"
                 onClick={triggerMatchConfetti}
-                className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#F9F5EE] hover:bg-[#F3EDE2] text-[#6B5327] text-[11px] font-semibold rounded-full border border-[#E4D9C5] transition-colors cursor-pointer"
-                title="Celebrate QuestBridge Match"
+                className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#FAF5ED] border border-[#E5DAC6] rounded-full text-xs font-semibold text-[#4A3B22] shadow-2xs hover:bg-[#F3ECE0] transition-colors cursor-pointer"
               >
                 <Award className="w-3.5 h-3.5 text-[#876834]" />
-                <span>QuestBridge Scholar</span>
-                <Sparkles className="w-3 h-3 text-[#876834]" />
+                <span>QuestBridge National Match Scholar</span>
               </button>
+              
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-stone-100 border border-stone-200/80 rounded-full text-xs text-stone-600 font-medium">
+                <MapPin className="w-3.5 h-3.5 text-stone-400" />
+                <span>Williams College '30 • Maryland</span>
+              </div>
+            </div>
 
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 text-stone-600 text-xs bg-white border border-stone-200 rounded-full">
-                <MapPin className="w-3 h-3 text-stone-400" />
-                <span>Massachusetts</span>
-              </span>
-            </motion.div>
-
-            {/* Headline */}
-            <motion.div variants={fadeInUp} className="space-y-2">
-              <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-stone-900 font-normal tracking-tight leading-tight">
-                Hi, I'm <span className="text-[#3A274A] font-medium">{PERSONAL_INFO.shortName}</span>.
+            {/* Typography Header */}
+            <div className="space-y-3">
+              <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-stone-900 tracking-tight leading-[1.15] font-normal">
+                Admissions Strategy, Mentorship &{' '}
+                <span className="italic text-[#3E2B4E] font-normal">Cognitive Research.</span>
               </h1>
-              <p className="font-serif text-lg sm:text-xl text-stone-600 font-light leading-relaxed">
-                Opening selective college doors for underrepresented students.
+              
+              <p className="text-sm sm:text-base text-stone-600 leading-relaxed max-w-xl">
+                Hi, I'm <strong className="font-semibold text-stone-900">Aldrich Magpali</strong> — a first-generation QuestBridge Scholar matched to Williams College. I help ambitious students demystify elite college admissions through data-driven essay strategy, structured fly-in guidance, and 1-on-1 mentorship.
               </p>
-            </motion.div>
+            </div>
 
-            {/* Narrative */}
-            <motion.p variants={fadeInUp} className="text-stone-600 text-sm sm:text-base leading-relaxed">
-              Incoming first-year at <strong className="text-stone-800 font-semibold">Williams College</strong>. After navigating financial aid and elite admissions as a low-income first-generation student in Prince George's County, I now lead workshops, admissions playbooks, and 1-on-1 mentorship so no student has to walk this road alone.
-            </motion.p>
+            {/* Micro Pillars */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+              <div className="flex items-start gap-2 text-xs text-stone-700 bg-white p-2.5 rounded-xl border border-stone-200/70 shadow-2xs">
+                <div className="w-4 h-4 rounded-full bg-[#EAE2F2] flex items-center justify-center text-[#3E2B4E] shrink-0 mt-0.5">
+                  <Check className="w-2.5 h-2.5" />
+                </div>
+                <span><strong>QuestBridge Strategy:</strong> Ranked 15 schools, 100% matched to top choice</span>
+              </div>
+
+              <div className="flex items-start gap-2 text-xs text-stone-700 bg-white p-2.5 rounded-xl border border-stone-200/70 shadow-2xs">
+                <div className="w-4 h-4 rounded-full bg-[#FAF5ED] flex items-center justify-center text-[#876834] shrink-0 mt-0.5">
+                  <Sparkles className="w-2.5 h-2.5" />
+                </div>
+                <span><strong>20+ Students Mentored:</strong> Fly-ins, QuestBridge & financial aid appeals</span>
+              </div>
+            </div>
 
             {/* Action Buttons */}
-            <motion.div variants={fadeInUp} className="pt-2 flex flex-wrap items-center gap-3">
-              <a
-                id="hero-story-cta"
-                href="#story"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#241D2B] hover:bg-[#3A2D44] text-white text-xs sm:text-sm font-medium rounded-lg shadow-2xs transition-all hover:scale-101"
-              >
-                <span>Read Story</span>
-                <ArrowRight className="w-4 h-4 text-stone-300" />
-              </a>
-
-              <a
-                id="hero-blog-cta"
-                href="#blog"
-                className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-white hover:bg-stone-50 text-stone-700 text-xs sm:text-sm font-medium border border-stone-200 rounded-lg shadow-2xs transition-colors"
-              >
-                <span>Field Notes</span>
-              </a>
-
+            <div className="flex flex-wrap items-center gap-3 pt-2">
               <button
-                id="hero-guide-cta"
+                id="hero-read-guide-btn"
                 onClick={onOpenQuestBridgeGuide}
-                className="inline-flex items-center gap-1.5 px-3.5 py-2.5 text-xs sm:text-sm font-medium text-stone-700 hover:text-stone-900 transition-colors cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#241D2B] hover:bg-[#382B42] text-white text-xs sm:text-sm font-medium rounded-xl shadow-2xs hover:scale-101 transition-all cursor-pointer"
               >
-                <BookOpen className="w-4 h-4 text-[#3E2B4E]" />
-                <span>Free QB Guide</span>
+                <BookOpen className="w-4 h-4 text-stone-300" />
+                <span>Read QuestBridge Playbook</span>
               </button>
-            </motion.div>
+
+              <a
+                id="hero-explore-advising-btn"
+                href="#services"
+                className="inline-flex items-center gap-2 px-4 py-2.5 bg-white hover:bg-stone-50 text-stone-800 text-xs sm:text-sm font-medium rounded-xl border border-stone-200/90 shadow-2xs transition-all cursor-pointer"
+              >
+                <span>Explore Advising</span>
+                <ArrowRight className="w-3.5 h-3.5 text-stone-400" />
+              </a>
+            </div>
 
           </motion.div>
 
-          {/* Right Column: Clean Portrait Frame */}
+          {/* Portrait Showcase */}
           <motion.div 
             variants={fadeInRight}
-            initial="hidden"
-            animate="visible"
-            className="md:col-span-5 flex flex-col items-center md:items-end justify-center"
+            className="lg:col-span-5 flex justify-center lg:justify-end"
           >
-            
             <TiltCard 
               id="hero-portrait-card"
               maxTilt={4} 
@@ -179,7 +138,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               {/* Photo */}
               <div className="relative aspect-4/5 w-full rounded-xl overflow-hidden bg-stone-100">
                 <img
-                  src={currentImage}
+                  src={PERSONAL_INFO.defaultAvatarUrl || "/aldrich_portrait.jpg"}
                   alt="Aldrich Jad S. Magpali"
                   referrerPolicy="no-referrer"
                   className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-102"
@@ -195,15 +154,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                     Aldrich Jad S. Magpali
                   </div>
                 </div>
-
-                <button
-                  id="hero-change-photo-btn"
-                  onClick={() => setShowImageModal(true)}
-                  className="absolute top-2.5 right-2.5 p-1.5 bg-white/90 hover:bg-white text-stone-700 rounded-full shadow-2xs backdrop-blur-xs transition-opacity opacity-70 group-hover:opacity-100 text-[10px] flex items-center gap-1 cursor-pointer"
-                  title="Change Photo"
-                >
-                  <Camera className="w-3 h-3 text-stone-600" />
-                </button>
               </div>
 
               {/* Card Footer */}
@@ -245,60 +195,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </motion.div>
 
       </div>
-
-      {/* Clean, Uncluttered Image Modal */}
-      {showImageModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-xs animate-in fade-in duration-150">
-          <div className="bg-white rounded-2xl max-w-sm w-full p-5 shadow-xl border border-gray-200 space-y-4">
-            <div className="flex items-center justify-between border-b border-gray-100 pb-2.5">
-              <h3 className="text-xs font-bold text-gray-900 uppercase tracking-wider">
-                Customize Portrait Photo
-              </h3>
-              <button
-                onClick={() => setShowImageModal(false)}
-                className="text-gray-400 hover:text-gray-600 transition-colors p-1"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-
-            <div className="space-y-3">
-              <label className="flex flex-col items-center justify-center border border-dashed border-gray-300 hover:border-[#3C225D] p-5 rounded-xl cursor-pointer bg-gray-50/60 hover:bg-purple-50/50 transition-colors">
-                <Upload className="w-5 h-5 text-[#3C225D] mb-1.5" />
-                <span className="text-xs text-gray-700 font-medium">Choose file from device</span>
-                <span className="text-[10px] text-gray-400 mt-0.5">PNG, JPG or WebP</span>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleFileUpload}
-                  className="hidden"
-                />
-              </label>
-
-              <div className="space-y-1.5 pt-1">
-                <label className="text-[11px] font-semibold text-gray-600 block">Or enter image URL</label>
-                <div className="flex gap-2">
-                  <input
-                    type="url"
-                    placeholder="https://example.com/photo.jpg"
-                    value={customUrl}
-                    onChange={(e) => setCustomUrl(e.target.value)}
-                    className="flex-1 px-3 py-2 text-xs bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#3C225D] focus:border-[#3C225D]"
-                  />
-                  <button
-                    onClick={handleApplyUrl}
-                    disabled={!customUrl.trim()}
-                    className="px-3.5 py-2 bg-[#3C225D] hover:bg-[#2F1A4A] text-white text-xs font-semibold rounded-lg transition-colors disabled:opacity-50 cursor-pointer"
-                  >
-                    Apply
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
     </motion.section>
   );
 };

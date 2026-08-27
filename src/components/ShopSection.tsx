@@ -117,6 +117,27 @@ export const ShopSection: React.FC = () => {
                   </div>
                 )}
 
+                {/* Product Image Preview */}
+                {service.imageUrl && (
+                  <div className="relative aspect-16/9 w-full rounded-xl overflow-hidden bg-stone-100 border border-stone-200/60 shadow-2xs group">
+                    <img
+                      src={service.imageUrl}
+                      alt={service.imageAlt || service.title}
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-103"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent pointer-events-none" />
+                    <div className="absolute bottom-2 left-3 right-3 text-white pointer-events-none flex items-center justify-between">
+                      <span className="text-[11px] font-medium tracking-wide text-white/95 drop-shadow-xs">
+                        {service.turnaroundTime}
+                      </span>
+                      <span className="text-xs font-serif font-semibold text-[#DCC9A8] drop-shadow-xs">
+                        {service.price}
+                      </span>
+                    </div>
+                  </div>
+                )}
+
                 <div className="space-y-4">
                   
                   {/* Header: Title & Rate */}
@@ -189,18 +210,28 @@ export const ShopSection: React.FC = () => {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-2xs animate-in fade-in duration-150">
           <div className="bg-white rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 shadow-lg border border-stone-200 space-y-5">
             
-            <div className="flex items-center justify-between border-b border-stone-100 pb-3">
-              <div>
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-stone-500 block">
-                  Service Request
-                </span>
-                <h3 className="text-base font-medium text-stone-900">
-                  {selectedService.title}
-                </h3>
+            <div className="flex items-start justify-between border-b border-stone-100 pb-3 gap-3">
+              <div className="flex items-center gap-3 min-w-0">
+                {selectedService.imageUrl && (
+                  <img
+                    src={selectedService.imageUrl}
+                    alt={selectedService.title}
+                    referrerPolicy="no-referrer"
+                    className="w-12 h-12 rounded-lg object-cover border border-stone-200 shrink-0"
+                  />
+                )}
+                <div className="min-w-0">
+                  <span className="text-[10px] font-semibold uppercase tracking-wider text-stone-500 block">
+                    Service Request
+                  </span>
+                  <h3 className="text-sm sm:text-base font-medium text-stone-900 truncate">
+                    {selectedService.title}
+                  </h3>
+                </div>
               </div>
               <button
                 onClick={() => setBookingModalOpen(false)}
-                className="p-1 rounded-full text-stone-400 hover:text-stone-600 transition-colors"
+                className="p-1 rounded-full text-stone-400 hover:text-stone-600 transition-colors shrink-0"
               >
                 <X className="w-5 h-5" />
               </button>
