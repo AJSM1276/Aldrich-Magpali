@@ -4,6 +4,13 @@ import { TiltCard } from './TiltCard';
 import confetti from 'canvas-confetti';
 import { motion } from 'motion/react';
 import { 
+  staggerContainer, 
+  fadeInUp, 
+  fadeInLeft, 
+  fadeInRight, 
+  fadeInScale 
+} from '../utils/motionVariants';
+import { 
   ArrowRight, 
   BookOpen, 
   MapPin, 
@@ -25,7 +32,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   onOpenQuestBridgeGuide,
 }) => {
   const [currentImage, setCurrentImage] = useState<string>(
-    "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800"
+    PERSONAL_INFO.defaultAvatarUrl || "/aldrich_portrait.jpg"
   );
   const [showImageModal, setShowImageModal] = useState(false);
   const [customUrl, setCustomUrl] = useState('');
@@ -35,7 +42,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       particleCount: 60,
       spread: 60,
       origin: { y: 0.6 },
-      colors: ['#3C225D', '#9333EA', '#F59E0B', '#E9D5FF']
+      colors: ['#3E2B4E', '#876834', '#D4C3A3', '#EAE2F2', '#A99B87']
     });
   };
 
@@ -67,76 +74,77 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
       initial={{ opacity: 0, y: 15 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="relative pt-28 pb-14 md:pt-36 md:pb-20 overflow-hidden bg-[#FAF9F6]"
+      className="relative pt-28 pb-14 md:pt-36 md:pb-20 overflow-hidden bg-[#FAF8F5]"
     >
       {/* Subtle ambient light wash */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-purple-100/40 rounded-full blur-3xl pointer-events-none -z-10" />
-      <div className="absolute bottom-10 left-10 w-72 h-72 bg-amber-50/50 rounded-full blur-2xl pointer-events-none -z-10" />
+      <div className="absolute top-0 right-1/4 w-96 h-96 bg-purple-100/30 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute bottom-10 left-10 w-72 h-72 bg-amber-50/40 rounded-full blur-2xl pointer-events-none -z-10" />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
           
-          {/* Left Column: Clean narrative */}
+          {/* Left Column: Clean narrative with staggered child animations */}
           <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+            variants={staggerContainer(0.1, 0.05)}
+            initial="hidden"
+            animate="visible"
             className="md:col-span-7 space-y-5 text-left"
           >
             
             {/* Top Badges */}
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#3C225D] text-white text-[11px] font-semibold tracking-wider uppercase rounded-full shadow-2xs">
+            <motion.div variants={fadeInUp} className="flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#F2EDF7] text-[#3A274A] text-[11px] font-semibold tracking-wide rounded-full border border-[#DDD0E8]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#3A274A]"></span>
                 Williams College '30
               </span>
 
               <button
                 onClick={triggerMatchConfetti}
-                className="inline-flex items-center gap-1.5 px-3 py-1 bg-purple-50 hover:bg-purple-100 text-[#3C225D] text-[11px] font-semibold rounded-full border border-purple-200 transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#F9F5EE] hover:bg-[#F3EDE2] text-[#6B5327] text-[11px] font-semibold rounded-full border border-[#E4D9C5] transition-colors cursor-pointer"
                 title="Celebrate QuestBridge Match"
               >
-                <Award className="w-3.5 h-3.5 text-[#3C225D]" />
+                <Award className="w-3.5 h-3.5 text-[#876834]" />
                 <span>QuestBridge Scholar</span>
-                <Sparkles className="w-3 h-3 text-amber-500" />
+                <Sparkles className="w-3 h-3 text-[#876834]" />
               </button>
 
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 text-gray-500 text-xs bg-white border border-gray-200/80 rounded-full">
-                <MapPin className="w-3 h-3 text-purple-600" />
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 text-stone-600 text-xs bg-white border border-stone-200 rounded-full">
+                <MapPin className="w-3 h-3 text-stone-400" />
                 <span>Massachusetts</span>
               </span>
-            </div>
+            </motion.div>
 
             {/* Headline */}
-            <div className="space-y-2">
-              <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-[#1A1A1A] font-normal tracking-tight leading-tight">
-                Hi, I'm <span className="text-[#3C225D] font-medium">{PERSONAL_INFO.shortName}</span>.
+            <motion.div variants={fadeInUp} className="space-y-2">
+              <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-stone-900 font-normal tracking-tight leading-tight">
+                Hi, I'm <span className="text-[#3A274A] font-medium">{PERSONAL_INFO.shortName}</span>.
               </h1>
-              <p className="font-serif text-lg sm:text-xl text-gray-700 font-light leading-relaxed">
+              <p className="font-serif text-lg sm:text-xl text-stone-600 font-light leading-relaxed">
                 Opening selective college doors for underrepresented students.
               </p>
-            </div>
+            </motion.div>
 
             {/* Narrative */}
-            <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-              Incoming first-year at <strong className="text-gray-900 font-semibold">Williams College</strong>. After navigating financial aid and elite admissions as a low-income first-generation student in Prince George's County, I now lead workshops, admissions playbooks, and 1-on-1 mentorship so no student has to walk this road alone.
-            </p>
+            <motion.p variants={fadeInUp} className="text-stone-600 text-sm sm:text-base leading-relaxed">
+              Incoming first-year at <strong className="text-stone-800 font-semibold">Williams College</strong>. After navigating financial aid and elite admissions as a low-income first-generation student in Prince George's County, I now lead workshops, admissions playbooks, and 1-on-1 mentorship so no student has to walk this road alone.
+            </motion.p>
 
             {/* Action Buttons */}
-            <div className="pt-2 flex flex-wrap items-center gap-3">
+            <motion.div variants={fadeInUp} className="pt-2 flex flex-wrap items-center gap-3">
               <a
                 id="hero-story-cta"
                 href="#story"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1A1A1A] hover:bg-[#3C225D] text-white text-xs sm:text-sm font-medium rounded-lg shadow-xs transition-all hover:scale-102"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#241D2B] hover:bg-[#3A2D44] text-white text-xs sm:text-sm font-medium rounded-lg shadow-2xs transition-all hover:scale-101"
               >
                 <span>Read Story</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-4 h-4 text-stone-300" />
               </a>
 
               <a
                 id="hero-blog-cta"
                 href="#blog"
-                className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-white hover:bg-gray-50 text-gray-800 text-xs sm:text-sm font-medium border border-gray-200 rounded-lg shadow-2xs transition-colors"
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-white hover:bg-stone-50 text-stone-700 text-xs sm:text-sm font-medium border border-stone-200 rounded-lg shadow-2xs transition-colors"
               >
                 <span>Field Notes</span>
               </a>
@@ -144,43 +152,43 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               <button
                 id="hero-guide-cta"
                 onClick={onOpenQuestBridgeGuide}
-                className="inline-flex items-center gap-1.5 px-3.5 py-2.5 text-xs sm:text-sm font-medium text-[#3C225D] hover:text-[#2F1A4A] transition-colors cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2.5 text-xs sm:text-sm font-medium text-stone-700 hover:text-stone-900 transition-colors cursor-pointer"
               >
-                <BookOpen className="w-4 h-4 text-[#3C225D]" />
+                <BookOpen className="w-4 h-4 text-[#3E2B4E]" />
                 <span>Free QB Guide</span>
               </button>
-            </div>
+            </motion.div>
 
           </motion.div>
 
           {/* Right Column: Clean Portrait Frame */}
           <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+            variants={fadeInRight}
+            initial="hidden"
+            animate="visible"
             className="md:col-span-5 flex flex-col items-center md:items-end justify-center"
           >
             
             <TiltCard 
               id="hero-portrait-card"
-              maxTilt={6} 
+              maxTilt={4} 
               scale={1.01}
-              glareOpacity={0.12}
-              className="w-full max-w-[290px] sm:max-w-[320px] rounded-2xl bg-white p-3 shadow-md border border-purple-100/90 group"
+              glareOpacity={0.08}
+              className="w-full max-w-[290px] sm:max-w-[320px] rounded-2xl bg-white p-3 shadow-sm border border-stone-200/80 group"
             >
               {/* Photo */}
-              <div className="relative aspect-4/5 w-full rounded-xl overflow-hidden bg-gray-100">
+              <div className="relative aspect-4/5 w-full rounded-xl overflow-hidden bg-stone-100">
                 <img
                   src={currentImage}
                   alt="Aldrich Jad S. Magpali"
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-103"
+                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-102"
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent pointer-events-none" />
 
                 <div className="absolute bottom-2.5 left-3 right-3 text-white pointer-events-none">
-                  <div className="text-[10px] uppercase tracking-wider font-semibold text-purple-200">
+                  <div className="text-[10px] uppercase tracking-wider font-semibold text-[#DCC9A8]">
                     Williams College '30
                   </div>
                   <div className="text-sm font-serif font-medium text-white">
@@ -191,17 +199,17 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 <button
                   id="hero-change-photo-btn"
                   onClick={() => setShowImageModal(true)}
-                  className="absolute top-2.5 right-2.5 p-1.5 bg-white/90 hover:bg-white text-gray-700 rounded-full shadow-xs backdrop-blur-xs transition-opacity opacity-70 group-hover:opacity-100 text-[10px] flex items-center gap-1 cursor-pointer"
+                  className="absolute top-2.5 right-2.5 p-1.5 bg-white/90 hover:bg-white text-stone-700 rounded-full shadow-2xs backdrop-blur-xs transition-opacity opacity-70 group-hover:opacity-100 text-[10px] flex items-center gap-1 cursor-pointer"
                   title="Change Photo"
                 >
-                  <Camera className="w-3 h-3 text-[#3C225D]" />
+                  <Camera className="w-3 h-3 text-stone-600" />
                 </button>
               </div>
 
               {/* Card Footer */}
-              <div className="pt-2 px-1 flex items-center justify-between text-xs text-gray-500">
+              <div className="pt-2 px-1 flex items-center justify-between text-xs text-stone-500">
                 <span>Eleanor Roosevelt HS '26</span>
-                <span className="text-[#3C225D] font-semibold text-[11px]">QuestBridge '25</span>
+                <span className="text-[#3A274A] font-medium text-[11px]">QuestBridge '25</span>
               </div>
             </TiltCard>
 
@@ -209,29 +217,30 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
         </div>
 
-        {/* Stats Row */}
+        {/* Stats Row with Staggered Entrance */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          variants={staggerContainer(0.08, 0.15)}
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
-          className="mt-12 pt-6 border-t border-gray-200/70 grid grid-cols-2 sm:grid-cols-4 gap-4"
+          className="mt-12 pt-6 border-t border-stone-200/80 grid grid-cols-2 sm:grid-cols-4 gap-4"
         >
           {PERSONAL_INFO.stats.map((stat, idx) => (
-            <div
+            <motion.div
               key={idx}
-              className="p-3.5 bg-white rounded-xl border border-gray-100 shadow-2xs flex flex-col justify-between"
+              variants={fadeInUp}
+              className="p-3.5 bg-white rounded-xl border border-stone-200/70 shadow-2xs flex flex-col justify-between"
             >
-              <div className="text-[10px] uppercase tracking-wider font-semibold text-gray-400">
+              <div className="text-[10px] uppercase tracking-wider font-semibold text-stone-400">
                 {stat.label}
               </div>
-              <div className="text-xl font-serif font-medium text-[#1A1A1A] my-0.5">
+              <div className="text-xl font-serif font-medium text-stone-900 my-0.5">
                 {stat.value}
               </div>
-              <div className="text-xs text-gray-500 font-normal">
+              <div className="text-xs text-stone-500 font-normal">
                 {stat.detail}
               </div>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
 

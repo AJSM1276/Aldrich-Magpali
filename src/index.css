@@ -4,23 +4,26 @@
   --font-sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, "Plus Jakarta Sans", Arial, sans-serif;
   --font-serif: Georgia, 'Newsreader', Cambria, 'Times New Roman', serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  --color-williams: #3C225D;
+  --color-williams: #3E2B4E;
+  --color-williams-deep: #251B2E;
+  --color-williams-gold: #9B783E;
+  --color-williams-gold-dark: #84642F;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #FAF9F6;
+  background-color: #FAF8F5;
 }
 
 body {
-  background-color: #FAF9F6;
-  color: #1A1A1A;
+  background-color: #FAF8F5;
+  color: #211C27;
   overflow-x: hidden;
 }
 
 ::selection {
-  background-color: #F3E8FF;
-  color: #3C225D;
+  background-color: #EAE2F2;
+  color: #2D1E3A;
 }
 
 /* 3D Floating & Perspective Enhancements */

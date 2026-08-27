@@ -20,7 +20,7 @@ export const TiltCard: React.FC<TiltCardProps> = ({
     <div
       id={id}
       onClick={onClick}
-      className={`relative overflow-hidden ${className}`}
+      className={`relative ${className}`}
     >
       {children}
     </div>

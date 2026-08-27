@@ -27,8 +27,10 @@ export const PERSONAL_INFO = {
   email: "aldrichmagpali1276@gmail.com",
   phone: "(650) 720-6881",
   location: "Williamstown, MA",
+  beehiivUrl: "https://aldrichmagpali-newsletter.beehiiv.com/",
   socials: [
-    { name: "LinkedIn", url: "https://linkedin.com/in/aldrich-magpali", username: "aldrich-magpali", icon: "Linkedin" },
+    { name: "Blog & Newsletter", url: "https://aldrichmagpali-newsletter.beehiiv.com/", username: "aldrichmagpali-newsletter", icon: "Mail" },
+    { name: "LinkedIn", url: "https://www.linkedin.com/in/aldrich-magpali/", username: "aldrich-magpali", icon: "Linkedin" },
     { name: "TikTok", url: "https://tiktok.com/@aldrichmagpali", username: "@aldrichmagpali", icon: "TikTok" },
     { name: "Instagram", url: "https://instagram.com/aldrichmagpali", username: "@aldrichmagpali", icon: "Instagram" },
     { name: "Email", url: "mailto:aldrichmagpali1276@gmail.com", username: "aldrichmagpali1276@gmail.com", icon: "Mail" }
@@ -36,7 +38,7 @@ export const PERSONAL_INFO = {
   tagline: "Opening selective college doors and bridging the divide between ambition and opportunity.",
   bio: "Incoming first-year at Williams College ('30) and QuestBridge Match Scholar from Maryland. After navigating the high-stakes college admissions maze as a low-income first-generation student, I have dedicated my time to mentoring 20+ FGLI applicants, creating Tutorly, and researching cognitive learning tools.",
   missionStatement: "Talent is evenly distributed across every neighborhood, but opportunity and information are not. My mission is to provide 1-on-1 mentorship, admissions playbooks, and cognitive tools that ensure ambitious students can realize their full potential.",
-  defaultAvatarUrl: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800",
+  defaultAvatarUrl: "/aldrich_portrait.jpg",
   stats: [
     { label: "College Match", value: "Williams '30", detail: "Full 4-Year Match Scholar" },
     { label: "Mentees Guided", value: "20+ Students", detail: "QuestBridge, Fly-Ins & Aid" },
