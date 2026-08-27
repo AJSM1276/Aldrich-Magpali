@@ -73,13 +73,18 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 
             {/* Typography Header */}
             <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <span className="text-xs sm:text-sm font-semibold tracking-wider uppercase text-[#3E2B4E] dark:text-[#E2C799]">
+                  Aldrich Magpali — Williams College '30
+                </span>
+              </div>
               <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-stone-900 dark:text-white tracking-tight leading-[1.15] font-normal">
-                Admissions Strategy, Mentorship &{' '}
+                College Admissions Strategy, Mentorship &{' '}
                 <span className="italic text-[#3E2B4E] dark:text-[#E2C799] font-normal">Cognitive Research.</span>
               </h1>
               
               <p className="text-sm sm:text-base text-stone-600 dark:text-stone-300 leading-relaxed max-w-xl">
-                Hi, I'm <strong className="font-semibold text-stone-900 dark:text-white">Aldrich Magpali</strong> — a first-generation QuestBridge Scholar matched to Williams College. I help ambitious students demystify elite college admissions through data-driven essay strategy, structured fly-in guidance, and 1-on-1 mentorship.
+                Hi, I'm <strong className="font-semibold text-stone-900 dark:text-white">Aldrich Magpali</strong> (Aldrich Jad S. Magpali) — a QuestBridge National College Match Scholar matched to Williams College. I help ambitious students demystify selective college admissions through data-driven essay strategy, structured fly-in guidance, and 1-on-1 mentorship.
               </p>
             </div>
 

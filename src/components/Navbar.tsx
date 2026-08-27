@@ -34,7 +34,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   const blogUrl = PERSONAL_INFO.beehiivUrl || "https://aldrichmagpali-newsletter.beehiiv.com/";
 
   const navLinks = [
-    { label: 'Story', href: '#story', external: false },
+    { label: 'About', href: '#about', external: false },
+    { label: 'Story & Testimonials', href: '#story', external: false },
     { label: 'Blog & Articles', href: blogUrl, external: true },
     { label: 'Services', href: '#services', external: false },
     { label: 'Contact', href: '#contact', external: false },

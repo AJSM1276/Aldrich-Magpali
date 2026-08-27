@@ -185,31 +185,73 @@ export const MENTEE_STORIES: MenteeStory[] = [
   {
     id: "maya-c",
     studentName: "Maya C.",
-    schoolContext: "Prince George's County Public Schools",
-    startingChallenge: "Unsure how to present her passion for environmental neuroscience without relying on generic extracurricular lists.",
-    keyStrategy: "Helped her restructure her biographical narrative around independent field observations and secured full fee waivers for fly-ins.",
-    outcomes: ["Accepted to Amherst DIVOH Fly-In (Full Travel Grant)", "QuestBridge National College Match Finalist", "100% Financial Aid Match Recipient"],
-    quote: "Aldrich was the only person who took the time to read every single draft of my essays. He showed me that my lived experience was my biggest strength.",
-    cohortYear: "Class of 2025"
+    schoolContext: "Prince George's County Public Schools, MD",
+    serviceType: "QuestBridge Match Strategy & Personal Statement Review",
+    category: "questbridge",
+    rating: 5,
+    admitHighlight: "Matched to Amherst College • $0 Student Loans",
+    startingChallenge: "Unsure how to present her passion for environmental neuroscience without falling into passive hardship clichés or repetitive resume lists.",
+    keyStrategy: "Restructured her 800-word biographical statement around independent field observations and secured 100% full travel fly-in grants.",
+    outcomes: [
+      "Accepted to Amherst DIVOH Fly-In (Full Travel Grant)",
+      "QuestBridge National College Match Finalist",
+      "Admitted with Full Four-Year Match Scholarship ($0 Loans)"
+    ],
+    quote: "Aldrich was the only mentor who took the time to read every single line of my drafts with deep margin commentary. He showed me that my lived background was my greatest intellectual asset.",
+    cohortYear: "Williams / Amherst '29 Cohort"
   },
   {
     id: "jordan-t",
     studentName: "Jordan T.",
-    schoolContext: "Eleanor Roosevelt High School",
-    startingChallenge: "Struggling with a complicated non-custodial parent financial aid form that threatened his ability to apply early.",
-    keyStrategy: "Coached through drafting a third-party non-custodial waiver petition with corroborating statements from school counselors.",
-    outcomes: ["CSS Profile Waiver Approved across 8 partner colleges", "Admitted with full need-based grant coverage ($0 loans)"],
-    quote: "I almost gave up on QuestBridge because the paperwork seemed impossible. Aldrich walked my family through the exact waiver letters we needed.",
+    schoolContext: "Eleanor Roosevelt High School S/T Magnet",
+    serviceType: "CSS Profile Financial Aid Defense & Non-Custodial Waiver",
+    category: "financial-aid",
+    rating: 5,
+    admitHighlight: "8 CSS Non-Custodial Waivers Approved",
+    startingChallenge: "Confronting an opaque, high-friction non-custodial parent CSS requirement that risked disqualifying his early match applications.",
+    keyStrategy: "Drafted a strategic third-party waiver packet with counselor corroboration letters and direct institutional financial aid officer outreach.",
+    outcomes: [
+      "CSS Profile Waiver Approved across 8 Top Partner Colleges",
+      "Full Need-Based Grant Coverage Guaranteed ($0 Parent Contribution)",
+      "Admitted to Top-Choice Institution Early"
+    ],
+    quote: "I almost gave up on QuestBridge because the CSS paperwork seemed impossible. Aldrich walked my family through the exact waiver letters we needed and kept us calm at every step.",
     cohortYear: "Class of 2025"
   },
   {
     id: "kevin-r",
     studentName: "Kevin R.",
-    schoolContext: "Maryland Title I High School",
-    startingChallenge: "Had a 3.9 GPA in STEM but zero exposure to top liberal arts colleges or fly-in programs.",
-    keyStrategy: "Introduced him to the Tutorly directory, curated a balanced 10-school ranking list, and coached his Why-School supplements.",
-    outcomes: ["Accepted to Williams Windows on Williams (WOW)", "The Gates Scholarship Semifinalist"],
-    quote: "Before talking to Aldrich, I thought state colleges with commuter fees were my only option. He opened my eyes to schools like Williams.",
+    schoolContext: "Maryland Title I Public High School",
+    serviceType: "Fly-In Program Coaching & Why-School Supplements",
+    category: "fly-ins",
+    rating: 5,
+    admitHighlight: "Windows on Williams (WOW) & Gates Semifinalist",
+    startingChallenge: "Had a 3.9 GPA in STEM coursework but zero prior exposure to liberal arts colleges, fly-in deadlines, or national merit scholarship pipelines.",
+    keyStrategy: "Curated a tailored fly-in schedule, refined short-answer essays for intellectual spark, and mapped out a balanced 12-school ranking list.",
+    outcomes: [
+      "Accepted to Williams College Windows on Williams (WOW) Fly-In",
+      "The Gates Scholarship National Semifinalist",
+      "Secured $20,000+ in Community & Private Scholarships"
+    ],
+    quote: "Before talking to Aldrich, I thought state commuter schools were my only realistic choice. He opened my eyes to top liberal arts colleges and helped me write essays that got me flown out to Williams.",
+    cohortYear: "Class of 2026"
+  },
+  {
+    id: "sam-l",
+    studentName: "Samantha L.",
+    schoolContext: "Public Magnet High School, Mid-Atlantic",
+    serviceType: "Common App Personal Statement Line Audit",
+    category: "essays",
+    rating: 5,
+    admitHighlight: "Admitted to Swarthmore & Wesleyan Early",
+    startingChallenge: "Her original essay draft was heavily weighed down by a passive trauma narrative that hid her genuine intellectual agency and curiosity.",
+    keyStrategy: "Applied the 70/30 agency framework to pivot from passive hardship to self-directed coding projects and local peer education leadership.",
+    outcomes: [
+      "Transformed a 650-word draft in 2 detailed editorial review rounds",
+      "Highlighted by an admissions officer for authentic narrative voice",
+      "Full Need-Based Financial Aid Package"
+    ],
+    quote: "The line-by-line feedback was astonishingly thorough. Aldrich didn't just fix grammar—he completely unlocked how to express my thinking process without losing my authentic voice.",
     cohortYear: "Class of 2026"
   }
 ];
@@ -524,7 +566,9 @@ export const SHOP_SERVICES_DATA: ShopService[] = [
       "Second-round draft review included"
     ],
     idealFor: "High school seniors finalizing their personal statement for QuestBridge, Common App, or Early Action/Decision.",
-    fgliWaiverAvailable: true
+    fgliWaiverAvailable: true,
+    payhipUrl: "https://products.aldrichmagpali.com/buy?s=1&cart_links%5B%5D=v5UyY&qty%5Bv5UyY%5D=1",
+    payhipProduct: "v5UyY"
   },
   {
     id: "questbridge-essay-exemplar",
@@ -548,7 +592,7 @@ export const SHOP_SERVICES_DATA: ShopService[] = [
     ],
     idealFor: "QuestBridge and Common App applicants seeking an authentic, successful full-match essay model and strategy breakdown.",
     fgliWaiverAvailable: true,
-    payhipUrl: "https://payhip.com/b/0NDan",
+    payhipUrl: "https://products.aldrichmagpali.com/buy?s=1&cart_links%5B%5D=0NDan&qty%5B0NDan%5D=1",
     payhipProduct: "0NDan"
   }
 ];

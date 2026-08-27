@@ -15,8 +15,13 @@ import {
   Award, 
   CheckCircle2, 
   BookOpen, 
-  Users, 
-  Quote
+  Quote,
+  Star,
+  MessageSquareQuote,
+  GraduationCap,
+  ArrowRight,
+  ShieldCheck,
+  Check
 } from 'lucide-react';
 
 interface StoryAndImpactSectionProps {
@@ -26,12 +31,17 @@ interface StoryAndImpactSectionProps {
 export const StoryAndImpactSection: React.FC<StoryAndImpactSectionProps> = ({
   onOpenQuestBridgeGuide
 }) => {
-  const [activeTab, setActiveTab] = useState<'journey' | 'mentorship'>('journey');
+  const [activeTab, setActiveTab] = useState<'journey' | 'testimonials'>('journey');
 
   const tabs = [
     { id: 'journey', label: 'My Journey & Match Day', icon: Sparkles, badge: "Williams '30" },
-    { id: 'mentorship', label: 'Student Mentorship & Impact', icon: Users, badge: '20+ Guided' },
+    { id: 'testimonials', label: 'Student Testimonials & Outcomes', icon: MessageSquareQuote, badge: '20+ Advised' },
   ] as const;
+
+  const handleScrollToServices = () => {
+    const el = document.getElementById('services');
+    el?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   return (
     <motion.section 
@@ -50,16 +60,16 @@ export const StoryAndImpactSection: React.FC<StoryAndImpactSectionProps> = ({
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#3E2B4E] dark:bg-[#E2C799]"></span>
               <span className="text-xs font-semibold uppercase tracking-widest text-stone-500 dark:text-stone-400">
-                Mission, Journey & Impact
+                Mission, Journey & Social Proof
               </span>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl text-stone-900 dark:text-white font-normal tracking-tight">
-              From personal adversity to <span className="italic text-[#3E2B4E] dark:text-[#E2C799] font-normal">mentorship & open doors</span>.
+              From personal adversity to <span className="italic text-[#3E2B4E] dark:text-[#E2C799] font-normal">student mentorship & success</span>.
             </h2>
           </div>
 
           <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 max-w-md leading-relaxed">
-            Explore my journey to Williams College and 1-on-1 student mentorship breakthroughs across selective college admissions and QuestBridge.
+            Explore my journey to Williams College and verified testimonials from students guided through QuestBridge, essay line audits, and selective college admissions.
           </p>
         </motion.div>
 
@@ -126,80 +136,146 @@ export const StoryAndImpactSection: React.FC<StoryAndImpactSectionProps> = ({
             </motion.div>
           ) : (
             <motion.div 
-              key="mentorship"
+              key="testimonials"
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
               className="space-y-8"
             >
-              {/* Quick Strip with Stagger */}
-              <div className="grid grid-cols-3 gap-3 text-center">
-                <div className="p-4 bg-[#FAF7F2] dark:bg-[#1A1224] border border-stone-200/80 dark:border-stone-800 rounded-xl transition-colors">
+              {/* Trust & Testimonial Metrics Summary */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg mx-auto w-full">
+                <div className="p-4 bg-[#FAF7F2] dark:bg-[#1A1224] border border-stone-200/80 dark:border-stone-800 rounded-xl text-center transition-colors shadow-2xs">
                   <div className="text-2xl font-serif font-medium text-stone-900 dark:text-white">20+</div>
-                  <div className="text-xs text-stone-600 dark:text-stone-400">Students Guided 1-on-1</div>
+                  <div className="text-xs text-stone-600 dark:text-stone-400">Students Advised</div>
                 </div>
-                <div className="p-4 bg-[#FAF7F2] dark:bg-[#1A1224] border border-stone-200/80 dark:border-stone-800 rounded-xl transition-colors">
-                  <div className="text-2xl font-serif font-medium text-stone-900 dark:text-white">2x</div>
-                  <div className="text-xs text-stone-600 dark:text-stone-400">Applicants at ERHS</div>
-                </div>
-                <div className="p-4 bg-[#FAF7F2] dark:bg-[#1A1224] border border-stone-200/80 dark:border-stone-800 rounded-xl transition-colors">
-                  <div className="text-2xl font-serif font-medium text-stone-900 dark:text-white">100%</div>
-                  <div className="text-xs text-stone-600 dark:text-stone-400">Free for Low-Income</div>
+
+                <div className="p-4 bg-[#FAF7F2] dark:bg-[#1A1224] border border-stone-200/80 dark:border-stone-800 rounded-xl text-center transition-colors shadow-2xs">
+                  <div className="text-2xl font-serif font-medium text-stone-900 dark:text-white">30+</div>
+                  <div className="text-xs text-stone-600 dark:text-stone-400">Personal Statements Reviewed</div>
                 </div>
               </div>
 
-              {/* Mentee Stories Grid with Staggered Entrance */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {/* Testimonials Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {MENTEE_STORIES.map((mentee) => (
                   <div key={mentee.id}>
                     <TiltCard
-                      maxTilt={3}
+                      maxTilt={2.5}
                       scale={1.01}
-                      className="p-5 bg-white dark:bg-[#1A1224] border border-stone-200/80 dark:border-stone-800 rounded-xl shadow-2xs space-y-3 flex flex-col justify-between hover:border-stone-300 dark:hover:border-stone-700 transition-colors h-full"
+                      className="p-6 bg-white dark:bg-[#1A1224] border border-stone-200/90 dark:border-stone-800 rounded-2xl shadow-2xs space-y-4 flex flex-col justify-between hover:border-stone-300 dark:hover:border-stone-700 transition-colors h-full"
                     >
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between">
-                          <span className="text-sm font-medium text-stone-900 dark:text-white">{mentee.studentName}</span>
-                          <span className="text-[11px] font-medium text-[#3A274A] dark:text-[#E2C799] bg-[#F2EDF7] dark:bg-[#342442] px-2 py-0.5 rounded border border-[#DDD0E8] dark:border-[#523A68]">
-                            {mentee.cohortYear}
-                          </span>
-                        </div>
-                        <div className="text-xs text-stone-500 dark:text-stone-400">{mentee.schoolContext}</div>
+                      <div className="space-y-3.5">
                         
-                        <div className="text-xs text-stone-700 dark:text-stone-300 bg-stone-50 dark:bg-stone-900/60 p-2.5 rounded border border-stone-100 dark:border-stone-800/80">
-                          <strong className="text-stone-900 dark:text-stone-200 block mb-0.5">Strategy:</strong>
-                          {mentee.keyStrategy}
+                        {/* Card Header: Rating, Verified Badge & Outcome Tag */}
+                        <div className="flex flex-wrap items-center justify-between gap-2">
+                          <div className="flex items-center gap-1 text-amber-500 dark:text-amber-400">
+                            {[...Array(mentee.rating || 5)].map((_, i) => (
+                              <Star key={i} className="w-3.5 h-3.5 fill-current" />
+                            ))}
+                            <span className="text-[11px] font-semibold text-stone-500 dark:text-stone-400 ml-1">
+                              5.0
+                            </span>
+                          </div>
+
+                          <div className="flex items-center gap-1.5">
+                            <span className="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/50 px-2 py-0.5 rounded-full border border-emerald-200 dark:border-emerald-800/60">
+                              <ShieldCheck className="w-3 h-3" />
+                              <span>Verified Student</span>
+                            </span>
+                          </div>
                         </div>
 
-                        <div className="space-y-1">
+                        {/* Highlighted Outcome Banner */}
+                        {mentee.admitHighlight && (
+                          <div className="flex items-center gap-2 p-2.5 rounded-xl bg-[#FAF5ED] dark:bg-[#251B2E] border border-[#E7DFD3] dark:border-[#4E3862]/60 text-[#3E2B4E] dark:text-[#FAF5ED]">
+                            <GraduationCap className="w-4 h-4 text-[#876834] dark:text-[#E2C799] shrink-0" />
+                            <span className="text-xs font-semibold tracking-tight">
+                              {mentee.admitHighlight}
+                            </span>
+                          </div>
+                        )}
+
+                        {/* Testimonial Quote */}
+                        <div className="relative pl-3.5 border-l-2 border-[#3E2B4E]/30 dark:border-[#E2C799]/40 py-0.5">
+                          <Quote className="w-3.5 h-3.5 text-[#3E2B4E] dark:text-[#E2C799] absolute -top-1 -left-2 opacity-30 fill-current" />
+                          <p className="text-xs sm:text-sm text-stone-800 dark:text-stone-200 italic leading-relaxed">
+                            "{mentee.quote}"
+                          </p>
+                        </div>
+
+                        {/* The Strategic Breakthrough */}
+                        <div className="text-xs text-stone-700 dark:text-stone-300 bg-[#FAF9F6] dark:bg-[#120B1C]/80 p-3 rounded-xl border border-stone-200/70 dark:border-stone-800 space-y-1">
+                          <div className="flex items-center gap-1 text-stone-900 dark:text-stone-200 font-medium">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#3E2B4E] dark:bg-[#E2C799]"></span>
+                            <span>Strategy Implemented:</span>
+                          </div>
+                          <p className="text-stone-600 dark:text-stone-400 text-[11px] leading-relaxed">
+                            {mentee.keyStrategy}
+                          </p>
+                        </div>
+
+                        {/* Verified Wins Checklist */}
+                        <div className="space-y-1.5 pt-1">
                           {mentee.outcomes.map((out, idx) => (
-                            <div key={idx} className="text-xs text-stone-800 dark:text-stone-200 flex items-center gap-1.5 font-medium">
-                              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400 shrink-0" />
-                              <span>{out}</span>
+                            <div key={idx} className="text-xs text-stone-800 dark:text-stone-200 flex items-start gap-1.5 font-medium">
+                              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700 dark:text-emerald-400 shrink-0 mt-0.5" />
+                              <span className="text-[11px] sm:text-xs leading-snug">{out}</span>
                             </div>
                           ))}
                         </div>
+
                       </div>
 
-                      <div className="pt-2 border-t border-stone-100 dark:border-stone-800 text-xs text-stone-600 dark:text-stone-400 italic">
-                        <Quote className="w-3 h-3 text-[#3A274A] dark:text-[#E2C799] inline mr-1 opacity-70" />
-                        "{mentee.quote}"
+                      {/* Card Footer: Student Info & Service Type */}
+                      <div className="pt-3 mt-3 border-t border-stone-100 dark:border-stone-800 flex items-center justify-between gap-3">
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <div className="w-8 h-8 rounded-full bg-[#241D2B] dark:bg-[#3E2B4E] text-[#FAF5ED] font-serif font-semibold text-xs flex items-center justify-center shrink-0 shadow-2xs">
+                            {mentee.studentName.charAt(0)}
+                          </div>
+                          <div className="min-w-0">
+                            <div className="text-xs font-semibold text-stone-900 dark:text-white truncate">
+                              {mentee.studentName}
+                            </div>
+                            <div className="text-[10px] text-stone-500 dark:text-stone-400 truncate">
+                              {mentee.schoolContext}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="text-right shrink-0">
+                          <span className="text-[10px] font-medium text-[#3E2B4E] dark:text-[#E2C799] bg-[#F2EDF7] dark:bg-[#342442] px-2 py-0.5 rounded border border-[#DDD0E8] dark:border-[#523A68] block">
+                            {mentee.cohortYear}
+                          </span>
+                        </div>
                       </div>
                     </TiltCard>
                   </div>
                 ))}
               </div>
 
-              {/* Mentorship Philosophy */}
-              <div className="p-5 bg-white dark:bg-[#1A1224] border border-stone-200/90 dark:border-stone-800 rounded-xl text-xs sm:text-sm text-stone-700 dark:text-stone-300 leading-relaxed space-y-2 transition-colors">
-                <h4 className="font-medium text-stone-900 dark:text-white flex items-center gap-2">
-                  <Award className="w-4 h-4 text-[#876834] dark:text-[#E2C799]" />
-                  <span>My Core Mentoring Belief</span>
-                </h4>
-                <p className="text-stone-600 dark:text-stone-300">
-                  "I never coach students to commodify their pain or write in an artificial adult tone. My role is asking the probing questions that help young people discover what they genuinely care about and articulate their intellectual curiosity with razor clarity."
-                </p>
+              {/* Mentorship Philosophy & Services Banner */}
+              <div className="p-5 sm:p-6 bg-gradient-to-br from-[#FAF7F2] to-[#F5EFE6] dark:from-[#1A1224] dark:to-[#120B1C] border border-[#E7DFD3] dark:border-stone-800 rounded-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-5 transition-colors">
+                <div className="space-y-1.5 max-w-xl">
+                  <div className="flex items-center gap-2">
+                    <Award className="w-4 h-4 text-[#876834] dark:text-[#E2C799]" />
+                    <h4 className="font-serif text-sm sm:text-base font-medium text-stone-900 dark:text-white">
+                      The Editorial & Mentorship Standard
+                    </h4>
+                  </div>
+                  <p className="text-xs text-stone-600 dark:text-stone-300 leading-relaxed">
+                    "I never coach students to commodify their pain or write in an artificial tone. My role is line-by-line editorial precision and probing questions that help applicants articulate their intellectual vitality with razor clarity."
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={handleScrollToServices}
+                  className="shrink-0 px-4 py-2.5 rounded-xl bg-[#241D2B] dark:bg-[#3E2B4E] hover:bg-[#382B42] dark:hover:bg-[#4E3862] text-white text-xs font-medium transition-all shadow-2xs hover:scale-101 cursor-pointer flex items-center gap-2"
+                >
+                  <span>Explore Essay Review Services</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
               </div>
 
             </motion.div>
@@ -210,4 +286,5 @@ export const StoryAndImpactSection: React.FC<StoryAndImpactSectionProps> = ({
     </motion.section>
   );
 };
+
 

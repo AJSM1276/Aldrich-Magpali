@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { SHOP_SERVICES_DATA } from '../data/portfolioData';
 import { ShopService } from '../types';
 import { TiltCard } from './TiltCard';
@@ -36,20 +36,6 @@ export const ShopSection: React.FC = () => {
   const [targetSchools, setTargetSchools] = useState('');
   const [upcomingDeadline, setUpcomingDeadline] = useState('');
   const [notesOrEssayLink, setNotesOrEssayLink] = useState('');
-
-  useEffect(() => {
-    // Re-initialize Payhip if script loaded asynchronously
-    if (typeof window !== 'undefined') {
-      const win = window as any;
-      if (win.Payhip && typeof win.Payhip.init === 'function') {
-        try {
-          win.Payhip.init();
-        } catch {
-          // graceful fallback
-        }
-      }
-    }
-  }, []);
 
   const handleOpenBooking = (service: ShopService, defaultWaiver = false) => {
     setSelectedService(service);
@@ -205,28 +191,24 @@ export const ShopSection: React.FC = () => {
                   </span>
 
                   {service.payhipUrl ? (
-                    <div className="space-y-2 pt-1">
-                      <a
-                        href={service.payhipUrl}
-                        className="payhip-buy-button w-full py-2.5 sm:py-3 text-xs font-medium rounded-lg shadow-2xs flex items-center justify-center gap-1.5 transition-all cursor-pointer bg-[#241D2B] dark:bg-[#3E2B4E] hover:bg-[#382B42] dark:hover:bg-[#4E3862] text-white hover:scale-101 no-underline"
-                        data-theme="none"
-                        data-product={service.payhipProduct || "0NDan"}
-                      >
-                        <Download className="w-3.5 h-3.5 text-stone-300 dark:text-[#FAF5ED]" />
-                        <span>Instant Access ({service.price})</span>
-                        <ArrowRight className="w-3.5 h-3.5 text-stone-300 dark:text-[#FAF5ED]" />
-                      </a>
-
-                      {service.fgliWaiverAvailable && (
-                        <button
-                          type="button"
-                          onClick={() => handleOpenBooking(service, true)}
-                          className="w-full text-center text-[11px] text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 transition-colors underline cursor-pointer py-0.5"
-                        >
-                          Need financial aid? Request free FGLI access
-                        </button>
+                    <a
+                      href={service.payhipUrl}
+                      className="payhip-buy-button w-full py-2.5 sm:py-3 text-xs font-medium rounded-lg shadow-2xs flex items-center justify-center gap-1.5 transition-all cursor-pointer bg-[#241D2B] dark:bg-[#3E2B4E] hover:bg-[#382B42] dark:hover:bg-[#4E3862] text-white hover:scale-101 no-underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {service.id === 'questbridge-essay-exemplar' ? (
+                        <>
+                          <Download className="w-3.5 h-3.5 text-stone-300 dark:text-[#FAF5ED]" />
+                          <span>Instant Access ({service.price})</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Get Started ({service.price})</span>
+                        </>
                       )}
-                    </div>
+                      <ArrowRight className="w-3.5 h-3.5 text-stone-300 dark:text-[#FAF5ED]" />
+                    </a>
                   ) : (
                     <button
                       onClick={() => handleOpenBooking(service)}
@@ -241,6 +223,43 @@ export const ShopSection: React.FC = () => {
               </TiltCard>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* FGLI Discount & Accessibility Callout */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-8 sm:mt-10 p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-[#FAF5ED] to-[#F3EBE0] dark:from-[#251B30] dark:to-[#1B1324] border border-[#E8DEC8] dark:border-stone-800 shadow-2xs flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+        >
+          <div className="flex items-start gap-3.5 max-w-2xl">
+            <div className="w-10 h-10 rounded-xl bg-[#3E2B4E]/10 dark:bg-[#FAF5ED]/10 flex items-center justify-center shrink-0 mt-0.5 text-[#3E2B4E] dark:text-[#E2C799]">
+              <HeartHandshake className="w-5 h-5" />
+            </div>
+            <div className="space-y-1">
+              <div className="flex flex-wrap items-center gap-2">
+                <h4 className="font-serif text-sm sm:text-base font-medium text-stone-900 dark:text-white">
+                  First-Gen & Low-Income (FGLI) Applicant?
+                </h4>
+                <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#3E2B4E]/10 dark:bg-[#FAF5ED]/15 text-[#3E2B4E] dark:text-[#FAF5ED]">
+                  Financial Aid Available
+                </span>
+              </div>
+              <p className="text-xs text-stone-600 dark:text-stone-300 leading-relaxed">
+                Cost should never prevent an ambitious applicant from accessing authentic admissions mentorship. If you qualify for QuestBridge, free/reduced lunch, or fee waivers, you can request an <strong>FGLI discount</strong> or fee reduction.
+              </p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => handleOpenBooking(SHOP_SERVICES_DATA[0], true)}
+            className="shrink-0 px-4 py-2.5 rounded-xl bg-white dark:bg-[#322340] hover:bg-stone-50 dark:hover:bg-[#3E2B4E] text-[#3E2B4E] dark:text-[#FAF5ED] border border-[#DED3BD] dark:border-stone-700 text-xs font-medium transition-all shadow-2xs hover:scale-101 cursor-pointer flex items-center gap-1.5"
+          >
+            <HeartHandshake className="w-3.5 h-3.5 text-[#3E2B4E] dark:text-[#FAF5ED]" />
+            <span>Request FGLI Discount</span>
+          </button>
         </motion.div>
 
       </div>
@@ -284,7 +303,7 @@ export const ShopSection: React.FC = () => {
                   <div>
                     <span className="text-stone-500 dark:text-stone-400 block">Rate:</span>
                     <span className="text-sm font-medium text-stone-900 dark:text-white">
-                      {isFgliWaiverRequested ? 'Free Aid Application (Pending Review)' : selectedService.price}
+                      {isFgliWaiverRequested ? 'FGLI Discount Request (Pending Review)' : selectedService.price}
                     </span>
                   </div>
                   <div className="text-right">
@@ -304,10 +323,10 @@ export const ShopSection: React.FC = () => {
                     />
                     <div className="space-y-0.5">
                       <span className="font-medium text-stone-900 dark:text-white block">
-                        I would like to apply for Need-Based Financial Assistance (Pro Bono)
+                        I would like to apply for an FGLI Discount / Need-Based Fee Reduction
                       </span>
                       <span className="text-stone-600 dark:text-stone-300 text-[11px] block leading-relaxed">
-                        If you cannot afford this service, check this box and briefly mention your background or financial circumstances in the notes below. Applications are reviewed individually.
+                        If you are a first-generation and/or low-income (FGLI) student, check this box and briefly note your background or financial context below. Requests are reviewed individually.
                       </span>
                     </div>
                   </label>
@@ -365,14 +384,14 @@ export const ShopSection: React.FC = () => {
 
                 <div className="space-y-1">
                   <label className="font-medium text-stone-700 dark:text-stone-300 block">
-                    Google Docs Essay Link / Notes {isFgliWaiverRequested ? '& Financial Aid Note' : ''} *
+                    Google Docs Essay Link / Notes {isFgliWaiverRequested ? '& FGLI Context' : ''} *
                   </label>
                   <textarea
                     rows={3}
                     required
                     placeholder={
                       isFgliWaiverRequested
-                        ? "Paste your Google Doc essay link and briefly note your school, background, or financial aid context for pro bono consideration..."
+                        ? "Paste your Google Doc essay link and briefly note your school, background, or financial aid context for FGLI discount consideration..."
                         : "Paste your Google Doc essay link (with comment access) or brainstorm notes..."
                     }
                     value={notesOrEssayLink}

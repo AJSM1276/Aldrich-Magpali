@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
+import { AboutSection } from './components/AboutSection';
 import { StoryAndImpactSection } from './components/StoryAndImpactSection';
 import { BlogSection } from './components/BlogSection';
 import { ShopSection } from './components/ShopSection';
@@ -42,18 +43,21 @@ function MainAppContent() {
           onExploreMission={handleExploreMission}
         />
 
-        {/* 2. Story & Mission Showcase (Journey to Williams '30, Mentorship) */}
+        {/* 2. Dedicated About Me & Academic Background Section */}
+        <AboutSection />
+
+        {/* 3. Story & Mission Showcase (Journey to Williams '30, Mentorship) */}
         <StoryAndImpactSection
           onOpenQuestBridgeGuide={handleOpenQuestBridgeGuide}
         />
 
-        {/* 3. Blog & Articles Publication Hub */}
+        {/* 4. Blog & Articles Publication Hub */}
         <BlogSection />
 
-        {/* 4. Advising & Essay Services Shop */}
+        {/* 5. Advising & Essay Services Shop */}
         <ShopSection />
 
-        {/* 5. Contact & Connect Section */}
+        {/* 6. Contact & Connect Section */}
         <ContactSection />
 
       </main>

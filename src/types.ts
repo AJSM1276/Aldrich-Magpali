@@ -172,6 +172,10 @@ export interface MenteeStory {
   id: string;
   studentName: string;
   schoolContext: string;
+  serviceType?: string;
+  category?: 'questbridge' | 'essays' | 'financial-aid' | 'fly-ins';
+  rating?: number;
+  admitHighlight?: string;
   startingChallenge: string;
   keyStrategy: string;
   outcomes: string[];

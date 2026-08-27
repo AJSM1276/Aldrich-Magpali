@@ -16,26 +16,34 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({
     const container = containerRef.current;
     if (!container) return;
 
-    // Scene, Camera, Renderer
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(
-      45,
-      container.clientWidth / container.clientHeight,
-      0.1,
-      1000
-    );
-    camera.position.z = 7;
+    let renderer: THREE.WebGLRenderer | null = null;
+    let animationFrameId: number;
+    let handleResize: (() => void) | null = null;
+    let handleMouseMove: ((e: MouseEvent) => void) | null = null;
+    let handleMouseDown: (() => void) | null = null;
+    let handleMouseUp: (() => void) | null = null;
 
-    const renderer = new THREE.WebGLRenderer({ 
-      alpha: true, 
-      antialias: true,
-      powerPreference: 'high-performance'
-    });
-    renderer.setSize(container.clientWidth, container.clientHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.2;
-    container.appendChild(renderer.domElement);
+    try {
+      // Scene, Camera, Renderer
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(
+        45,
+        container.clientWidth / container.clientHeight,
+        0.1,
+        1000
+      );
+      camera.position.z = 7;
+
+      renderer = new THREE.WebGLRenderer({ 
+        alpha: true, 
+        antialias: true,
+        powerPreference: 'high-performance'
+      });
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.2;
+      container.appendChild(renderer.domElement);
 
     // Group for all rotating elements
     const mainGroup = new THREE.Group();
@@ -170,8 +178,8 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({
       isDragging = false;
     };
 
-    const handleResize = () => {
-      if (!container) return;
+    handleResize = () => {
+      if (!container || !renderer) return;
       camera.aspect = container.clientWidth / container.clientHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(container.clientWidth, container.clientHeight);
@@ -183,8 +191,7 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({
     window.addEventListener('mouseup', handleMouseUp);
 
     // Animation Loop
-    let animationFrameId: number;
-    let clock = new THREE.Clock();
+    const clock = new THREE.Clock();
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
@@ -221,21 +228,30 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({
       // Subtle particle drift
       particles.rotation.y = elapsedTime * 0.04;
 
-      renderer.render(scene, camera);
+      if (renderer) {
+        renderer.render(scene, camera);
+      }
     };
 
     animate();
+    } catch {
+      // Graceful fallback for non-WebGL environments
+    }
 
     // Cleanup
     return () => {
-      window.removeEventListener('resize', handleResize);
-      container.removeEventListener('mousemove', handleMouseMove);
-      container.removeEventListener('mousedown', handleMouseDown);
-      window.removeEventListener('mouseup', handleMouseUp);
-      cancelAnimationFrame(animationFrameId);
-      renderer.dispose();
-      if (container.contains(renderer.domElement)) {
-        container.removeChild(renderer.domElement);
+      if (handleResize) window.removeEventListener('resize', handleResize);
+      if (handleMouseMove) container.removeEventListener('mousemove', handleMouseMove);
+      if (handleMouseDown) container.removeEventListener('mousedown', handleMouseDown);
+      if (handleMouseUp) window.removeEventListener('mouseup', handleMouseUp);
+      if (typeof animationFrameId === 'number') {
+        cancelAnimationFrame(animationFrameId);
+      }
+      if (renderer) {
+        renderer.dispose();
+        if (container.contains(renderer.domElement)) {
+          container.removeChild(renderer.domElement);
+        }
       }
     };
   }, [intensity]);
