@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ThemeProvider } from './context/ThemeContext';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { StoryAndImpactSection } from './components/StoryAndImpactSection';
@@ -9,7 +10,7 @@ import { Footer } from './components/Footer';
 import { TutorlyExplorerModal } from './components/TutorlyExplorerModal';
 import { QuestBridgeGuideModal } from './components/QuestBridgeGuideModal';
 
-export default function App() {
+function MainAppContent() {
   const [tutorlyModalOpen, setTutorlyModalOpen] = useState(false);
   const [questBridgeModalOpen, setQuestBridgeModalOpen] = useState(false);
 
@@ -23,7 +24,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAF9F6] text-[#1A1A1A] font-sans selection:bg-purple-100 selection:text-[#3C225D] relative overflow-x-hidden">
+    <div className="min-h-screen bg-[#FAF9F6] dark:bg-[#0E0915] text-[#1A1A1A] dark:text-[#EDE8F2] font-sans selection:bg-purple-100 dark:selection:bg-[#432E56] selection:text-[#3C225D] dark:selection:text-[#FAF5ED] relative overflow-x-hidden transition-colors duration-300">
       
       {/* Top Fixed Header */}
       <Navbar
@@ -75,3 +76,12 @@ export default function App() {
     </div>
   );
 }
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <MainAppContent />
+    </ThemeProvider>
+  );
+}
+

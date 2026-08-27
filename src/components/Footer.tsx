@@ -40,7 +40,7 @@ export const Footer: React.FC = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="py-14 bg-white text-stone-600 text-xs border-t border-stone-200/80"
+      className="py-14 bg-white dark:bg-[#100919] text-stone-600 dark:text-stone-400 text-xs border-t border-stone-200/80 dark:border-stone-800/80 transition-colors duration-300"
     >
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         
@@ -50,41 +50,41 @@ export const Footer: React.FC = () => {
           {/* Brand & Mission Statement */}
           <div className="md:col-span-5 space-y-3">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-[#241D2B] text-stone-200 flex items-center justify-center font-serif font-medium text-xs shadow-2xs border border-stone-800">
+              <div className="w-8 h-8 rounded-lg bg-[#241D2B] dark:bg-[#3E2B4E] text-stone-200 flex items-center justify-center font-serif font-medium text-xs shadow-2xs border border-stone-800 dark:border-stone-700">
                 {PERSONAL_INFO.monogram}
               </div>
               <div>
-                <span className="font-medium text-stone-900 text-sm block">
+                <span className="font-medium text-stone-900 dark:text-white text-sm block">
                   {PERSONAL_INFO.name}
                 </span>
-                <span className="text-[11px] text-[#3E2B4E] font-medium flex items-center gap-1">
-                  <Sparkles className="w-3 h-3 text-[#876834]" />
+                <span className="text-[11px] text-[#3E2B4E] dark:text-[#E2C799] font-medium flex items-center gap-1">
+                  <Sparkles className="w-3 h-3 text-[#876834] dark:text-[#E2C799]" />
                   Williams '30 • QuestBridge Scholar
                 </span>
               </div>
             </div>
-            <p className="text-stone-500 text-xs leading-relaxed max-w-sm">
+            <p className="text-stone-500 dark:text-stone-400 text-xs leading-relaxed max-w-sm">
               Empowering first-generation, low-income students with high-yield college admissions mentorship, free peer learning, and research-backed strategy.
             </p>
           </div>
 
           {/* Navigation Links */}
           <div className="md:col-span-3 space-y-2.5">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-stone-400 block">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-stone-400 dark:text-stone-500 block">
               Quick Navigation
             </span>
-            <div className="flex flex-col space-y-1.5 text-xs text-stone-600 font-medium">
-              <a href="#hero-section" className="hover:text-stone-900 transition-colors py-0.5">Home & Overview</a>
-              <a href="#story" className="hover:text-stone-900 transition-colors py-0.5">Story & Impact</a>
-              <a href="#blog" className="hover:text-stone-900 transition-colors py-0.5">Field Notes & Blog</a>
-              <a href="#services" className="hover:text-stone-900 transition-colors py-0.5">Advising & Services</a>
-              <a href="#contact" className="hover:text-stone-900 transition-colors py-0.5">Get in Touch</a>
+            <div className="flex flex-col space-y-1.5 text-xs text-stone-600 dark:text-stone-300 font-medium">
+              <a href="#hero" className="hover:text-stone-900 dark:hover:text-white transition-colors py-0.5">Home & Overview</a>
+              <a href="#story" className="hover:text-stone-900 dark:hover:text-white transition-colors py-0.5">Story & Impact</a>
+              <a href="#blog" className="hover:text-stone-900 dark:hover:text-white transition-colors py-0.5">Field Notes & Blog</a>
+              <a href="#services" className="hover:text-stone-900 dark:hover:text-white transition-colors py-0.5">Advising & Services</a>
+              <a href="#contact" className="hover:text-stone-900 dark:hover:text-white transition-colors py-0.5">Get in Touch</a>
             </div>
           </div>
 
           {/* Social Profiles & Direct Connect */}
           <div className="md:col-span-4 space-y-3">
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-stone-400 block">
+            <span className="text-[11px] font-semibold uppercase tracking-wider text-stone-400 dark:text-stone-500 block">
               Connect & Socials
             </span>
             
@@ -96,9 +96,9 @@ export const Footer: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.name}
-                  className="flex items-center gap-2 px-3 py-2 bg-stone-50 hover:bg-stone-100 text-stone-700 hover:text-stone-900 rounded-lg border border-stone-200/80 transition-all text-xs font-medium group"
+                  className="flex items-center gap-2 px-3 py-2 bg-stone-50 dark:bg-[#1A1224] hover:bg-stone-100 dark:hover:bg-[#261B34] text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white rounded-lg border border-stone-200/80 dark:border-stone-800 transition-all text-xs font-medium group"
                 >
-                  <span className="text-stone-500 group-hover:text-stone-800 transition-colors">
+                  <span className="text-stone-500 dark:text-stone-400 group-hover:text-stone-800 dark:group-hover:text-stone-200 transition-colors">
                     {getSocialIcon(social.name)}
                   </span>
                   <span>{social.name}</span>
@@ -106,8 +106,8 @@ export const Footer: React.FC = () => {
               ))}
             </div>
 
-            <div className="flex items-center gap-1.5 text-[11px] text-stone-400 pt-1">
-              <MapPin className="w-3.5 h-3.5 text-stone-400 shrink-0" />
+            <div className="flex items-center gap-1.5 text-[11px] text-stone-400 dark:text-stone-500 pt-1">
+              <MapPin className="w-3.5 h-3.5 text-stone-400 dark:text-stone-500 shrink-0" />
               <span>{PERSONAL_INFO.location}</span>
             </div>
           </div>
@@ -115,17 +115,17 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar with Back to Top */}
-        <div className="pt-6 border-t border-stone-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-stone-400">
+        <div className="pt-6 border-t border-stone-100 dark:border-stone-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-stone-400 dark:text-stone-500">
           <p>
             © {new Date().getFullYear()} {PERSONAL_INFO.name}. All rights reserved.
           </p>
 
           <button
             onClick={scrollToTop}
-            className="px-3.5 py-1.5 rounded-lg bg-stone-50 hover:bg-stone-100 border border-stone-200 text-stone-700 hover:text-stone-900 transition-all flex items-center gap-1.5 text-xs font-medium cursor-pointer shadow-2xs hover:shadow-xs"
+            className="px-3.5 py-1.5 rounded-lg bg-stone-50 dark:bg-[#1A1224] hover:bg-stone-100 dark:hover:bg-[#261B34] border border-stone-200 dark:border-stone-800 text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white transition-all flex items-center gap-1.5 text-xs font-medium cursor-pointer shadow-2xs hover:shadow-xs"
             title="Back to Top"
           >
-            <ArrowUp className="w-3.5 h-3.5 text-stone-600" />
+            <ArrowUp className="w-3.5 h-3.5 text-stone-600 dark:text-stone-400" />
             <span>Back to Top</span>
           </button>
         </div>
