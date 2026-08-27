@@ -1,0 +1,6 @@
+{
+  "name": "Aldrich Magpali — Portfolio & College Access Mission",
+  "description": "Portfolio and college access platform of Aldrich Jad S. Magpali — Williams College '30 QuestBridge Match Scholar, mentoring FGLI students, personal statement review services, cognitive science research, and field notes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
