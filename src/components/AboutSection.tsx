@@ -1,29 +1,14 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { PERSONAL_INFO, CORE_VALUES } from '../data/portfolioData';
+import { PERSONAL_INFO } from '../data/portfolioData';
 import { 
   GraduationCap, 
-  Brain, 
-  Compass, 
-  Sparkles, 
   MapPin, 
-  BookOpen, 
-  Code, 
-  Users, 
-  Unlock, 
   ArrowRight,
-  HeartHandshake,
   Lightbulb
 } from 'lucide-react';
 
 export const AboutSection: React.FC = () => {
-  const iconMap: Record<string, React.ReactNode> = {
-    Unlock: <Unlock className="w-4 h-4 text-[#3E2B4E] dark:text-[#E2C799]" />,
-    Brain: <Brain className="w-4 h-4 text-[#3E2B4E] dark:text-[#E2C799]" />,
-    Code: <Code className="w-4 h-4 text-[#3E2B4E] dark:text-[#E2C799]" />,
-    Users: <Users className="w-4 h-4 text-[#3E2B4E] dark:text-[#E2C799]" />
-  };
-
   return (
     <motion.section
       id="about"
@@ -44,10 +29,10 @@ export const AboutSection: React.FC = () => {
             </span>
           </div>
           <h2 className="font-serif text-3xl sm:text-4xl text-stone-900 dark:text-white font-normal tracking-tight">
-            Bridging the gap between <span className="italic text-[#3E2B4E] dark:text-[#E2C799] font-normal">ambition and opportunity</span>.
+            Bridging the gap between <span className="italic text-[#3E2B4E] dark:text-[#E2C799] font-normal">dreams and reality</span>.
           </h2>
           <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 leading-relaxed">
-            A glimpse into my academic background, research curiosities, and the core beliefs that drive my writing, software building, and admissions mentoring.
+            A glimpse into my academic background, research curiosities, and the story that drives my college prep and admissions mentoring.
           </p>
         </div>
 
@@ -58,13 +43,13 @@ export const AboutSection: React.FC = () => {
           <div className="lg:col-span-7 space-y-6">
             <div className="space-y-4 text-xs sm:text-sm text-stone-700 dark:text-stone-300 leading-relaxed">
               <p>
-                I am an incoming first-year student at <strong className="text-stone-900 dark:text-white font-semibold">Williams College ('30)</strong> and a <strong className="text-stone-900 dark:text-white font-semibold">QuestBridge National College Match Scholar</strong> from Prince George’s County, Maryland.
+                I am an incoming first-year student at <strong className="text-stone-900 dark:text-white font-semibold">Williams College ('30)</strong> and a <strong className="text-stone-900 dark:text-white font-semibold">QuestBridge National College Match Scholar</strong> from Prince George’s County, Maryland. As an independent college prep mentor, I help students across the country master the Common App, QuestBridge Match, and selective college applications.
               </p>
               <p>
                 Growing up in a working-class immigrant household in Greenbelt, MD, the world of elite college admissions felt distant and impenetrable. Without private college counselors, legacy connections, or generational wealth, I had to teach myself how to decipher CSS Profile tax forms, craft compelling narrative essays, and secure all-expenses-paid fly-in travel grants.
               </p>
               <p>
-                That experience ignited my conviction that <em>talent is universal, but access to information is not</em>. Today, I combine cognitive science frameworks with candid, line-by-line editorial feedback to help high school applicants articulate their genuine intellectual voice.
+                That experience ignited my conviction that <em>talent is universal, but access to information is not</em>. Today, I combine cognitive science frameworks with candid, line-by-line editorial feedback to coach applicants through every step of their college prep journey, from personal statement brainstorming to final submission.
               </p>
             </div>
 
@@ -76,7 +61,7 @@ export const AboutSection: React.FC = () => {
               </div>
               <div className="space-y-1.5">
                 <div className="text-sm font-serif font-medium text-stone-900 dark:text-white">
-                  Intended Major: Biology & Psychology (Pre-Health / Cognitive Science Track)
+                  Intended Major: Psychology and Pre-Medicine
                 </div>
                 <p className="text-xs text-stone-600 dark:text-stone-300 leading-relaxed">
                   Deeply interested in how the human mind consolidates memory, the neurobiology of stress and learning, and how digital learning tools (like Tutorly) can democratize peer tutoring in public school districts.
@@ -125,7 +110,7 @@ export const AboutSection: React.FC = () => {
                 <div className="flex items-center justify-between">
                   <span className="text-stone-500 dark:text-stone-400">College Match</span>
                   <span className="font-medium text-[#3E2B4E] dark:text-[#E2C799]">
-                    Williams College '30 (Full Ride)
+                    Williams College '30
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
@@ -163,39 +148,6 @@ export const AboutSection: React.FC = () => {
 
           </div>
 
-        </div>
-
-        {/* Core Values 4-Pillar Grid */}
-        <div className="space-y-4 pt-4">
-          <div className="flex items-center justify-between">
-            <h3 className="font-serif text-lg sm:text-xl text-stone-900 dark:text-white font-medium">
-              Core Principles & Values
-            </h3>
-            <span className="text-xs text-stone-500 dark:text-stone-400">
-              How I approach work, writing & advising
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {CORE_VALUES.map((val) => (
-              <div
-                key={val.id}
-                className="p-5 bg-white dark:bg-[#1A1224] border border-stone-200/80 dark:border-stone-800 rounded-xl shadow-2xs space-y-2 hover:border-stone-300 dark:hover:border-stone-700 transition-colors flex flex-col justify-between"
-              >
-                <div className="space-y-2">
-                  <div className="w-8 h-8 rounded-lg bg-[#FAF5ED] dark:bg-[#251B2E] border border-[#E7DFD3] dark:border-stone-700/60 flex items-center justify-center">
-                    {iconMap[val.icon] || <Sparkles className="w-4 h-4 text-[#3E2B4E] dark:text-[#E2C799]" />}
-                  </div>
-                  <h4 className="font-serif text-sm font-medium text-stone-900 dark:text-white">
-                    {val.title}
-                  </h4>
-                  <p className="text-xs text-stone-600 dark:text-stone-400 leading-relaxed">
-                    {val.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
 
       </div>

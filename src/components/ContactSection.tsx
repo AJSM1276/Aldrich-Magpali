@@ -23,7 +23,7 @@ import {
 export const ContactSection: React.FC = () => {
   const [contactName, setContactName] = useState('');
   const [contactEmail, setContactEmail] = useState('');
-  const [contactCategory, setContactCategory] = useState('High School Workshop / Presentation');
+  const [contactCategory, setContactCategory] = useState('1-on-1 Mentorship');
   const [contactMessage, setContactMessage] = useState('');
   
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -129,7 +129,7 @@ export const ContactSection: React.FC = () => {
             Connect with Aldrich
           </h2>
           <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 max-w-md mx-auto leading-relaxed">
-            Reach out for high school workshops, FGLI college advising, or general inquiries.
+            Reach out for 1-on-1 college advising, QuestBridge inquiries, or general questions.
           </p>
         </motion.div>
 
@@ -177,10 +177,10 @@ export const ContactSection: React.FC = () => {
                   onChange={(e) => setContactCategory(e.target.value)}
                   className="w-full px-3.5 py-2.5 bg-stone-50/50 dark:bg-[#1E142B] hover:bg-white dark:hover:bg-[#251B33] focus:bg-white dark:focus:bg-[#251B33] text-sm text-stone-900 dark:text-white border border-stone-200 dark:border-stone-700 rounded-lg focus:outline-none focus:ring-1 focus:ring-stone-400 dark:focus:ring-[#E2C799]/50 focus:border-stone-400 dark:focus:border-[#E2C799]/60 transition-all cursor-pointer"
                 >
-                  <option className="bg-white dark:bg-[#1E142B] text-stone-900 dark:text-stone-100" value="High School Workshop / Presentation">High School Workshop / Presentation</option>
-                  <option className="bg-white dark:bg-[#1E142B] text-stone-900 dark:text-stone-100" value="1-on-1 Mentorship (FGLI Free)">1-on-1 Mentorship (FGLI Free)</option>
+                  <option className="bg-white dark:bg-[#1E142B] text-stone-900 dark:text-stone-100" value="1-on-1 Mentorship">1-on-1 Mentorship</option>
                   <option className="bg-white dark:bg-[#1E142B] text-stone-900 dark:text-stone-100" value="Williams College & QuestBridge Inquiries">Williams College & QuestBridge Inquiries</option>
                   <option className="bg-white dark:bg-[#1E142B] text-stone-900 dark:text-stone-100" value="General Collaboration">General Collaboration</option>
+                  <option className="bg-white dark:bg-[#1E142B] text-stone-900 dark:text-stone-100" value="Other">Other</option>
                 </select>
               </div>
 

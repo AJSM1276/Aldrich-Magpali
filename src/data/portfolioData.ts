@@ -19,8 +19,8 @@ export const PERSONAL_INFO = {
   monogram: "AM",
   classYear: "Williams College '30",
   incomingInstitution: "Williams College",
-  majorIntent: "Biology & Psychology (Intended)",
-  secondaryInterests: ["Cognitive Science", "Educational Equity", "Front-End Web Development", "Behavioral Research"],
+  majorIntent: "Psychology and Pre-Medicine (Intended)",
+  secondaryInterests: ["Cognitive Science", "Educational Equity", "Behavioral Research"],
   hometown: "Greenbelt, Maryland (Prince George's County)",
   highSchool: "Eleanor Roosevelt High School (Science & Technology Program)",
   recognition: "QuestBridge National College Match Scholar (Williams College)",
@@ -547,50 +547,54 @@ export const SHOP_SERVICES_DATA: ShopService[] = [
   {
     id: "personal-statement-review",
     title: "Personal Statement Review & Line Audit",
-    category: "Essay Review Service",
+    category: "1-on-1 Review",
     price: "$35",
-    turnaroundTime: "48–72 Hours",
+    turnaroundTime: "36–48 Hours",
+    wordLimit: "900 Word Limit",
     popular: true,
     imageUrl: "/product_essay_review.jpg",
     imageAlt: "Personal Statement Review & Line Audit editorial document and margin annotations preview",
-    description: "A comprehensive, line-by-line editorial and macro structural review of your 650-word Common App essay or 800-word QuestBridge biographical statement, including 1 free follow-up review.",
+    description: "Detailed feedback on your personal statement with line-by-line comments and overall structural suggestions. Comprehensive line-by-line editing with targeted comments on structure, flow, narrative, and voice.",
     includes: [
-      "Extensive Google Docs margin comments with line-by-line syntax & word choice optimization",
-      "Macro narrative evaluation: theme, story arc, pacing, and emotional resonance",
-      "Voice coaching to showcase intellectual spark and lived agency without trauma tropes",
-      "1 FREE follow-up review on your revised 2nd draft (within 7 days)"
+      "Line-by-line margin comments & feedback",
+      "Macro structural, flow & narrative critique",
+      "Guaranteed 36–48 hour turnaround",
+      "Follow-up email support on revisions",
+      "900 word limit (Common App & QuestBridge)"
     ],
     deliverables: [
-      "Annotated Google Doc with 25+ precise line-level & strategic notes",
-      "1-page Narrative Strategy Action Blueprint & Next Steps Checklist",
-      "Second-round draft review included"
+      "Annotated document with line-by-line margin comments and syntax suggestions",
+      "Macro structural & narrative diagnosis and pacing evaluation",
+      "Follow-up email support on your revisions"
     ],
-    idealFor: "High school seniors finalizing their personal statement for QuestBridge, Common App, or Early Action/Decision.",
+    idealFor: "High school seniors finalizing their personal statement for Common App, QuestBridge, or Early Action/Decision.",
     fgliWaiverAvailable: true,
     payhipUrl: "https://products.aldrichmagpali.com/buy?s=1&cart_links%5B%5D=v5UyY&qty%5Bv5UyY%5D=1",
     payhipProduct: "v5UyY"
   },
   {
     id: "questbridge-essay-exemplar",
-    title: "Aldrich's QuestBridge Match Personal Statement & Strategy Breakdown",
-    category: "Digital Resource & Exemplar",
-    price: "$10",
-    turnaroundTime: "Instant Digital Access",
+    title: "QuestBridge Personal Statement",
+    category: "QuestBridge Exemplar",
+    price: "$14.99",
+    originalPrice: "$24.99",
+    turnaroundTime: "Instant Access",
     popular: false,
     imageUrl: "/product_exemplar_breakdown.jpg",
     imageAlt: "QuestBridge Match winning personal statement exemplar and strategy breakdown digital publication preview",
-    description: "The authentic, unedited 800-word QuestBridge biographical essay that matched to Williams College Class of 2030 (full 4-year $350K+ match scholarship), with line-by-line commentary and prompt strategy.",
+    description: "This essay was one of the strongest parts of my application that probably got me accepted and matched to Williams College on a full four-year scholarship. Includes my full unedited essay with line-by-line breakdown and commentary.",
     includes: [
-      "Full, unedited text of Aldrich's winning 800-word QuestBridge biographical statement",
-      "Line-by-line self-commentary explaining narrative choices, transitions, and tone",
-      "Deconstruction of how lived hardship was balanced with intellectual agency and curiosity",
-      "Breakdown of draft iterations: from initial brainstorm to final submission version"
+      "Full, unedited QuestBridge essay",
+      "Line-by-line breakdown & commentary",
+      "Narrative strategy & structure breakdown",
+      "Brainstorming & ideation blueprint",
+      "Instant PDF download access"
     ],
     deliverables: [
-      "Annotated PDF with line-by-line commentary & strategy guide",
+      "Annotated PDF with full essay text & line-by-line commentary",
       "Personal Statement Ideation & Brainstorming Action Blueprint"
     ],
-    idealFor: "QuestBridge and Common App applicants seeking an authentic, successful full-match essay model and strategy breakdown.",
+    idealFor: "QuestBridge applicants seeking an authentic, successful full-match essay model and strategy breakdown.",
     fgliWaiverAvailable: true,
     payhipUrl: "https://products.aldrichmagpali.com/buy?s=1&cart_links%5B%5D=0NDan&qty%5B0NDan%5D=1",
     payhipProduct: "0NDan"

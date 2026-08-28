@@ -109,11 +109,14 @@ export interface ShopService {
   title: string;
   category: string;
   price: string;
+  originalPrice?: string;
   turnaroundTime: string;
   popular?: boolean;
   imageUrl?: string;
   imageAlt?: string;
   description: string;
+  excerptQuote?: string;
+  wordLimit?: string;
   includes: string[];
   deliverables: string[];
   idealFor: string;

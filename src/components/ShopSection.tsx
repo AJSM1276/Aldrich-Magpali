@@ -73,11 +73,11 @@ export const ShopSection: React.FC = () => {
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#3E2B4E] dark:bg-[#E2C799]"></span>
               <span className="text-xs font-semibold uppercase tracking-widest text-stone-500 dark:text-stone-400">
-                Advising & Essay Resources
+                College Prep, Common App & QuestBridge Services
               </span>
             </div>
             <h2 className="font-serif text-3xl sm:text-4xl text-stone-900 dark:text-white font-normal tracking-tight">
-              Personal Statement <span className="italic text-[#3E2B4E] dark:text-[#E2C799] font-normal">Review & Resources</span>
+              College Application & <span className="italic text-[#3E2B4E] dark:text-[#E2C799] font-normal">Essay Mentorship</span>
             </h2>
           </div>
 
@@ -139,33 +139,65 @@ export const ShopSection: React.FC = () => {
                   </div>
                 )}
 
-                <div className="space-y-4">
+                <div className="space-y-4 flex-1 flex flex-col justify-between">
                   
-                  {/* Header: Title & Rate */}
-                  <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[11px] font-semibold uppercase tracking-wider text-stone-600 dark:text-stone-300 flex items-center gap-1.5">
-                        {getServiceIcon(service.category)}
-                        <span>{service.category}</span>
-                      </span>
-                      <div className="text-[11px] text-stone-500 dark:text-stone-400 font-medium flex items-center gap-1">
-                        <Clock className="w-3 h-3 text-stone-400" />
-                        <span>{service.turnaroundTime}</span>
+                  <div className="space-y-4">
+                    {/* Header: Title & Rate */}
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between flex-wrap gap-2">
+                        <span className="text-[11px] font-semibold uppercase tracking-wider text-stone-600 dark:text-stone-300 flex items-center gap-1.5">
+                          {getServiceIcon(service.category)}
+                          <span>{service.category}</span>
+                        </span>
+                        <div className="text-[11px] text-stone-500 dark:text-stone-400 font-medium flex items-center gap-1">
+                          <Clock className="w-3 h-3 text-stone-400" />
+                          <span>{service.turnaroundTime}</span>
+                        </div>
+                      </div>
+
+                      <h3 className="font-serif text-lg sm:text-xl font-medium text-stone-900 dark:text-white leading-snug">
+                        {service.title}
+                      </h3>
+
+                      {/* Pricing & Word Limit Badges */}
+                      <div className="flex items-baseline justify-between flex-wrap gap-2 pt-1">
+                        <div className="flex items-baseline gap-2.5">
+                          <span className="text-2xl sm:text-3xl font-serif font-medium text-stone-900 dark:text-white">
+                            {service.price}
+                          </span>
+                          {service.originalPrice && (
+                            <span className="text-sm font-sans line-through text-stone-400 dark:text-stone-500 font-normal">
+                              {service.originalPrice}
+                            </span>
+                          )}
+                          {service.originalPrice && (
+                            <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
+                              Save $10
+                            </span>
+                          )}
+                        </div>
+
+                        {service.wordLimit && (
+                          <span className="text-[11px] font-medium text-[#4A3B22] dark:text-[#E2C799] bg-[#FAF5ED] dark:bg-[#251B2E] border border-[#E5DAC6] dark:border-[#4E3862] px-2.5 py-0.5 rounded-md">
+                            {service.wordLimit}
+                          </span>
+                        )}
                       </div>
                     </div>
 
-                    <h3 className="font-serif text-lg sm:text-xl font-medium text-stone-900 dark:text-white leading-snug">
-                      {service.title}
-                    </h3>
+                    <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 leading-relaxed">
+                      {service.description}
+                    </p>
 
-                    <div className="text-2xl sm:text-3xl font-serif font-medium text-stone-900 dark:text-white pt-1">
-                      {service.price}
-                    </div>
+                    {/* Excerpt Quote if available */}
+                    {service.excerptQuote && (
+                      <div className="p-3 rounded-xl bg-stone-50 dark:bg-[#130B1C] border border-stone-200/80 dark:border-stone-800/80 text-xs italic text-stone-700 dark:text-stone-300 leading-relaxed relative">
+                        <span className="font-serif text-stone-400 dark:text-stone-500 mr-1 text-sm">“</span>
+                        <span>{service.excerptQuote}</span>
+                        <span className="font-serif text-stone-400 dark:text-stone-500 ml-1 text-sm">”</span>
+                      </div>
+                    )}
                   </div>
-
-                  <p className="text-xs sm:text-sm text-stone-600 dark:text-stone-300 leading-relaxed min-h-[44px]">
-                    {service.description}
-                  </p>
 
                   {/* Deliverables checklist */}
                   <div className="space-y-2 pt-3 border-t border-stone-100 dark:border-stone-800">

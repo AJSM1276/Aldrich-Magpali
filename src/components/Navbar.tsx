@@ -56,25 +56,25 @@ export const Navbar: React.FC<NavbarProps> = ({
         <a 
           id="nav-brand-logo"
           href="#" 
-          className="group flex items-center gap-2.5 transition-transform hover:scale-101"
+          className="group flex items-center gap-2 sm:gap-2.5 transition-transform hover:scale-101 min-w-0"
         >
-          <div className="w-7 h-7 rounded-lg bg-[#2D2236] dark:bg-[#3E2B4E] text-[#DBCBB1] dark:text-[#FAF5ED] flex items-center justify-center font-serif font-bold text-xs shadow-2xs group-hover:bg-[#3E304B] dark:group-hover:bg-[#4E3862] transition-colors border border-stone-300/40 dark:border-stone-700/60">
+          <div className="w-7 h-7 rounded-lg bg-[#2D2236] dark:bg-[#3E2B4E] text-[#DBCBB1] dark:text-[#FAF5ED] flex items-center justify-center font-serif font-bold text-xs shadow-2xs group-hover:bg-[#3E304B] dark:group-hover:bg-[#4E3862] transition-colors border border-stone-300/40 dark:border-stone-700/60 shrink-0">
             {PERSONAL_INFO.monogram}
           </div>
-          <div className="flex flex-col">
-            <span className="font-semibold text-stone-900 dark:text-white text-xs sm:text-sm tracking-tight block">
+          <div className="flex flex-col min-w-0">
+            <span className="font-semibold text-stone-900 dark:text-white text-xs sm:text-sm tracking-tight truncate block">
               {PERSONAL_INFO.name}
             </span>
-            <span className="text-[10px] uppercase tracking-wider text-stone-500 dark:text-stone-400 font-medium flex items-center gap-1">
+            <span className="text-[10px] uppercase tracking-wider text-stone-500 dark:text-stone-400 font-medium flex items-center gap-1 truncate">
               <span className="text-stone-700 dark:text-stone-300 font-semibold">Williams '30</span>
-              <span className="text-stone-400 dark:text-stone-600">•</span>
-              <span className="text-[#876834] dark:text-[#E2C799]">QuestBridge Scholar</span>
+              <span className="hidden sm:inline text-stone-400 dark:text-stone-600">•</span>
+              <span className="hidden sm:inline text-[#876834] dark:text-[#E2C799]">QuestBridge Scholar</span>
             </span>
           </div>
         </a>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-7 text-xs font-medium text-stone-600 dark:text-stone-300">
+        {/* Desktop Navigation Links (Visible on lg+) */}
+        <nav className="hidden lg:flex items-center gap-7 text-xs font-medium text-stone-600 dark:text-stone-300">
           {navLinks.map((link) => (
             <a
               key={link.label}
@@ -90,8 +90,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           ))}
         </nav>
 
-        {/* Action Controls & Dark Mode Toggle */}
-        <div className="hidden sm:flex items-center gap-2.5">
+        {/* Action Controls & Dark Mode Toggle (Desktop lg+) */}
+        <div className="hidden lg:flex items-center gap-2.5">
           
           {/* Theme Toggle Button */}
           <button
@@ -127,8 +127,8 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
         </div>
 
-        {/* Mobile controls: Theme toggle + Hamburger */}
-        <div className="flex md:hidden items-center gap-2">
+        {/* Mobile & Tablet controls: Theme toggle + Hamburger (Visible below lg) */}
+        <div className="flex lg:hidden items-center gap-2">
           <button
             onClick={toggleTheme}
             className="p-2 rounded-lg text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-white bg-white/80 dark:bg-stone-800/80 border border-stone-200 dark:border-stone-700 transition-colors cursor-pointer"
@@ -164,43 +164,35 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       </div>
 
-      {/* Mobile Drawer Menu with smooth animation */}
+      {/* Mobile & Tablet Drawer Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div 
             id="nav-mobile-drawer"
-            initial={{ opacity: 0, height: 0, y: -6 }}
-            animate={{ opacity: 1, height: 'auto', y: 0 }}
-            exit={{ opacity: 0, height: 0, y: -6 }}
-            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-            className="md:hidden overflow-hidden bg-[#FAF8F5]/98 dark:bg-[#120B1C]/98 backdrop-blur-md border-b border-stone-200/80 dark:border-stone-800/80 shadow-md"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
+            className="lg:hidden overflow-hidden bg-[#FAF8F5]/98 dark:bg-[#120B1C]/98 backdrop-blur-md border-b border-stone-200/80 dark:border-stone-800/80 shadow-md"
           >
-            <div className="px-5 pt-3 pb-5 space-y-3">
-              <div className="grid grid-cols-2 gap-2 text-xs">
-                {navLinks.map((link, idx) => (
-                  <motion.a
+            <div className="px-4 pt-2 pb-4 space-y-2">
+              <nav className="flex flex-col space-y-1">
+                {navLinks.map((link) => (
+                  <a
                     key={link.label}
                     href={link.href}
                     target={link.external ? "_blank" : undefined}
                     rel={link.external ? "noopener noreferrer" : undefined}
                     onClick={() => setMobileMenuOpen(false)}
-                    initial={{ opacity: 0, y: 6 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.04 * idx + 0.05, duration: 0.2 }}
-                    className="px-3.5 py-2.5 rounded-xl text-stone-700 dark:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800 hover:text-stone-900 dark:hover:text-white bg-white/60 dark:bg-stone-900/60 border border-stone-200/60 dark:border-stone-700/60 transition-colors font-medium flex items-center justify-between shadow-2xs"
+                    className="px-3 py-2.5 rounded-lg text-sm text-stone-700 dark:text-stone-200 hover:bg-stone-100 dark:hover:bg-stone-800/70 hover:text-stone-900 dark:hover:text-white transition-colors font-medium flex items-center justify-between"
                   >
                     <span>{link.label}</span>
-                    {link.external && <ExternalLink className="w-3 h-3 opacity-50 text-stone-500 dark:text-stone-400" />}
-                  </motion.a>
+                    {link.external && <ExternalLink className="w-3.5 h-3.5 opacity-50 text-stone-500 dark:text-stone-400" />}
+                  </a>
                 ))}
-              </div>
+              </nav>
 
-              <motion.div 
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.2 }}
-                className="pt-2 border-t border-stone-200/70 dark:border-stone-800/70"
-              >
+              <div className="pt-2 border-t border-stone-200/70 dark:border-stone-800/70">
                 <button
                   onClick={() => {
                     setMobileMenuOpen(false);
@@ -211,7 +203,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   <BookOpen className="w-3.5 h-3.5 text-[#3E2B4E] dark:text-[#E2C799]" />
                   <span>Read Free QuestBridge Guide</span>
                 </button>
-              </motion.div>
+              </div>
             </div>
           </motion.div>
         )}
